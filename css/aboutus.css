@@ -1,0 +1,92 @@
+ul.about-info, ul.team-info {
+    list-style: none;
+    display: inline-block;
+    margin: auto;  
+    padding: 0;
+    text-align:  left !important;  
+}
+
+li.map-marker::before {
+    content: "\f041"; /* FontAwesome Unicode */ 
+}
+
+li.phone::before {
+    content: "\f095"; /* FontAwesome Unicode */ 
+}
+
+li.envelope::before {
+    content: "\f0e0"; /* FontAwesome Unicode */ 
+}
+
+li.clock-o::before {
+    content: "\f017"; /* FontAwesome Unicode */ 
+}
+
+li.briefcase::before {
+    content: "\f0b1"; /* FontAwesome Unicode */ 
+}
+
+ul.about-info li {
+    color: #439CB5;
+
+}
+
+ul.about-info li::before {
+    color: #439CB5; 
+    font-family: FontAwesome;
+    display: inline-block;
+    font-size: 2rem;
+    width: 1.5em; /* same as padding-left set on li */
+}
+
+ul.team-info li {
+    font-size: 14px;
+    color: #439CB5;
+}
+
+ul.team-info li::before {
+    color: #439CB5; 
+    font-family: FontAwesome;
+    display: inline-block;
+    font-size: 1rem;
+    width: 1.5em; /* same as padding-left set on li */
+}
+
+.info-div {
+    text-align: right;
+}
+
+div.card {
+    width: 90%;
+}
+
+div.card-body.member-name {
+    padding: 0px 1rem;
+    background-color: #EBEBEB;
+    text-align: center;
+}
+
+.google-map iframe {
+    width: 80%;
+    height: 300px;
+    border-radius: 5px;
+    margin: auto;
+}
+
+
+
+@media only screen and (max-width: 991px) {
+
+    .info-div {
+        text-align: center !important;
+        margin-top: -1rem !important;
+    }
+
+    .google-map {
+        width: 100%;
+    }
+
+    .google-map iframe {
+        width: 100% !important;
+    }
+  }
