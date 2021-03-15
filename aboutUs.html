@@ -34,7 +34,7 @@
       <div class="col-lg-12 col-md-10 mt-3">
         <h1 class="pageHeading">About Us</h1>
         <p class="w-100 mt-2 pl-2">
-          We maximize the marketing potential for sellers, reaching the widest possible audience, increasing the chances 
+          We maximize the marketing potential for sellers, reaching the widest possible audience, increasing the chances
           of finding a buyer and ensuring efficiency throughout the selling process.<br><br>
 
           While we do provide services for buyers and sellers, we have thousands of properties managed by out letting
@@ -57,7 +57,11 @@
       </div>
       <div class="col-md-8 col-sm-12 m-auto">
         <div class="google-map text-center">
-          <iframe
+          <div class="loading-spinner text-center" style="display: block;">
+            <i class="fa fa-spinner fa-pulse fa-3x"></i>
+            <p>Loading Map...</p>
+          </div>
+          <iframe id="googleMapIframe" style="display: none;" onload="iframeLoadComplete()"
             src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d2311.621481617133!2d-5.930098584114189!3d54.593043480259205!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e0!4m0!4m5!1s0x486108f9189477c3%3A0x668a2a4a8241237c!2sRochester%20Building%2C%2028%20Adelaide%20St%2C%20Belfast%20BT2%208GD!3m2!1d54.5930435!2d-5.9279098999999995!5e0!3m2!1sen!2suk!4v1615220328526!5m2!1sen!2suk"
             style="border:0;" allowfullscreen="" loading="lazy">
           </iframe>
@@ -67,7 +71,7 @@
     <div class="row">
       <h2 class="pageHeading mt-5 pr-5">Meet the team</h2>
     </div>
-    <div class="row pr-5">                  
+    <div class="row pr-5">
       <div class="col-lg-3 col-md-6 col-sm-12">
         <div class="card mt-3">
           <img class="card-img-top" src="images/aboutUs/ruairi.png" alt="Ruairi card pic">
@@ -135,5 +139,12 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/site.js"></script>
   </div>
+  <script>
+    function iframeLoadComplete() {
+      $('#googleMapIframe').show();
+      $('.loading-spinner').remove();
+    }
+  </script>
 </body>
+
 </html>
