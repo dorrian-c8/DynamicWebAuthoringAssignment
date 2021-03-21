@@ -1,0 +1,9 @@
+form {
+    text-align: center !important;
+    margin-top: 100px;
+}
+
+.col-4 {
+    margin: 0 auto;
+    width: 80%;
+}
