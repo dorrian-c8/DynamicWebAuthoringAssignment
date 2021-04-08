@@ -8,27 +8,30 @@ $(document).ready(function () {
     }
     retrievedObject = localStorage.getItem('properties');
     var json = JSON.parse(retrievedObject);
-    resetProperties();
-    $('#address-filter-input').on('input', function () {
-        var searchObj = getSearchParams();
-        if (Object.keys(searchObj).length > 0) {
-            var results = multipleFilterProperties(json.houses, searchObj);
-            displayProperties(results);
-        } else {
-            resetProperties();
-        }
-    });
 
-    $('[name="customRadio"]').change(function () {
-        var searchObj = getSearchParams();
-        if (Object.keys(searchObj).length > 0) {
-            var results = multipleFilterProperties(json.houses, searchObj);
-            displayProperties(results);
-        } else {
-            resetProperties();
-        }
-    });
-
+    // if address-filter-input exists we are on listings page
+    if ($('#address-filter-input').length > 0) {
+        resetProperties();
+        $('#address-filter-input').on('input', function () {
+            var searchObj = getSearchParams();
+            if (Object.keys(searchObj).length > 0) {
+                var results = multipleFilterProperties(json.houses, searchObj);
+                displayProperties(results);
+            } else {
+                resetProperties();
+            }
+        });
+    
+        $('[name="customRadio"]').change(function () {
+            var searchObj = getSearchParams();
+            if (Object.keys(searchObj).length > 0) {
+                var results = multipleFilterProperties(json.houses, searchObj);
+                displayProperties(results);
+            } else {
+                resetProperties();
+            }
+        });
+    }
 });
 
 function resetProperties() {
@@ -96,6 +99,7 @@ function getSearchParams() {
     var address = $('#address-filter-input').val();
     var saleTypeId = $("[name='customRadio']:checked").attr('id');
     var saleType = $('label[for="' + saleTypeId + '"]').text();
+    saleType = saleType == 'Both' ? '' : saleType; // if saletype == Both display all
     var bedrooms = '';
 
     // all params selected
@@ -308,7 +312,7 @@ var propertyObject = {
             "Id": 8,
             "Address": "#4 Lisburn Lane",
             "Price": 90000,
-            "SaleType": "Both",
+            "SaleType": "Rent",
             "Bedrooms": 1,
             "MainImg": "images/listings/house1.jpg",
             "Description": "This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
