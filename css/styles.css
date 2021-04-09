@@ -84,3 +84,19 @@ a .fa {
 .pageHeading {
     color: #439CB5;
 }
+
+  span.fa-circle {
+    position: absolute;
+    font-size: 0.6em;
+    top: 4px;
+    color: red;
+    right: 14px;
+  }
+  span.num {
+    position: absolute;
+    font-size: 0.4em;
+    top: 7px;
+    color: #fff;
+    right: 19px;
+    font-family: 'Poppins';
+  }
