@@ -23,15 +23,19 @@ nav {
 }
 
 .nav-link.active {
-    color: #09D4F4 !important;
+    color: #439CB5 !important;
 }
 
-.fa {
+a .fa {
     color: white;
 }
 
 .left-nav {
     margin-right: auto;
+}
+
+.nav-link.active {
+    font-weight: bold;
 }
 
 @media only screen and (max-width: 991px) {
@@ -76,3 +80,7 @@ nav {
         width: 60%;
     }
   }
+
+.pageHeading {
+    color: #439CB5;
+}

@@ -5,8 +5,10 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/listings.css">
+  <link rel="icon" href="images/Logo Solo Transparent.png">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <title>Housepal - Home</title>
+  <title>Housepal - Listings</title>
 
   <!-- Bootstrap -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -16,25 +18,254 @@
   <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
   <!-- Add our own css -->
   <link href="css/styles.css" rel="stylesheet">
-
-
-  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 
 <body>
   <div id="navbar-frame"></div>
-  <div class="container">    
-    <h1>Listings</h1>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="js/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/site.js"></script>
+  <div class="container-fluid main-container">
+
+    <div class="row">
+      <div class="filter-col col-12 col-sm-3 col-md-2">
+        <div class="container filter-container">
+
+          <div class="row">
+            <div class="col-10">
+              <span class="header-filter">Filter</span>
+            </div>
+          </div>
+
+          <div class="row row-filter">
+            <div class="col-12">
+              <span class="address-filter">Town, postcode or address</span>
+              <input class="form-control" id="address-filter-input" type="text" placeholder="">
+            </div>
+          </div>
+
+          <div class="row row-filter">
+            <div class="col-12">
+              <div class="custom-control custom-radio">
+                <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+                <label class="custom-control-label" for="customRadio1">Rent</label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+                <label class="custom-control-label" for="customRadio2">Buy</label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
+                <label class="custom-control-label" for="customRadio3">Both</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row row-filter">
+            <div class="col-10">
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Bedrooms
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#!">1</a>
+                  <a class="dropdown-item" href="#!">2</a>
+                  <a class="dropdown-item" href="#!">3</a>
+                  <a class="dropdown-item" href="#!">4+</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 maincol col-sm-9 col-md-10">
+        <div class="row heading-row">
+          <div class="col heading-col">
+            <h3 class="header-listings">Listings</h3>
+            <span class="dream">Find your dream house <strong>today</strong></span>
+          </div>
+        </div>
+
+        <div class="col-12 listing-maincol">
+
+          <!-- Listings Row 1 -->
+          <div class="row listing-row1">
+
+            <div class="col-lg-3 col-md-6 col-xs-12 listing-col">
+              <div class="card">
+                <img src="images/listings/house1.jpg" class="card-img-top" alt="card-img-top">
+                <div class="card-body">
+                  <h5 class="card-title">#1 Belfast Avenue</h5>
+                  <h3 class="card-price">£90,000</h3>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                    additional content. This content is a little bit longer.</p>
+                  <p class="card-text"><small class="view-text">View listing</small></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-xs-12 listing-col">
+              <div class="card">
+                <img src="images/listings//house1.jpg" class="card-img-top" alt="card-img-top">
+                <div class="card-body">
+                  <h5 class="card-title">#2 Belfast Avenue</h5>
+                  <h3 class="card-price">£90,000</h3>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                    additional content. This content is a little bit longer.</p>
+                  <p class="card-text"><small class="view-text">View listing</small></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-xs-12 listing-col">
+              <div class="card">
+                <img src="images/listings//house1.jpg" class="card-img-top" alt="card-img-top">
+                <div class="card-body">
+                  <h5 class="card-title">#3 Belfast Avenue</h5>
+                  <h3 class="card-price">£90,000</h3>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                    additional content. This content is a little bit longer.</p>
+                  <p class="card-text"><small class="view-text">View listing</small></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-xs-12 listing-col">
+              <div class="card">
+                <img src="images/listings//house1.jpg" class="card-img-top" alt="card-img-top">
+                <div class="card-body">
+                  <h5 class="card-title">#4 Belfast Avenue</h5>
+                  <h3 class="card-price">£90,000</h3>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                    additional content. This content is a little bit longer.</p>
+                  <p class="card-text"><small class="view-text">View listing</small></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Listings Row 2 -->
+          <div class="row listing-row">
+
+            <div class="col-lg-3 col-md-6 col-xs-12 listing-col">
+              <div class="card">
+                <img src="images/listings//house1.jpg" class="card-img-top" alt="card-img-top">
+                <div class="card-body">
+                  <h5 class="card-title">#1 Lisburn Lane</h5>
+                  <h3 class="card-price">£90,000</h3>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                    additional content. This content is a little bit longer.</p>
+                  <p class="card-text"><small class="view-text">View listing</small></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-xs-12 listing-col">
+              <div class="card">
+                <img src="images/listings//house1.jpg" class="card-img-top" alt="card-img-top">
+                <div class="card-body">
+                  <h5 class="card-title">#2 Lisburn Lane</h5>
+                  <h3 class="card-price">£90,000</h3>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                    additional content. This content is a little bit longer.</p>
+                  <p class="card-text"><small class="view-text">View listing</small></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-xs-12 listing-col">
+              <div class="card">
+                <img src="images/listings//house1.jpg" class="card-img-top" alt="card-img-top">
+                <div class="card-body">
+                  <h5 class="card-title">#3 Lisburn Lane</h5>
+                  <h3 class="card-price">£90,000</h3>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                    additional content. This content is a little bit longer.</p>
+                  <p class="card-text"><small class="view-text">View listing</small></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-xs-12 listing-col">
+              <div class="card">
+                <img src="images/listings//house1.jpg" class="card-img-top" alt="card-img-top">
+                <div class="card-body">
+                  <h5 class="card-title">#4 Lisburn Lane</h5>
+                  <h3 class="card-price">£90,000</h3>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                    additional content. This content is a little bit longer.</p>
+                  <p class="card-text"><small class="view-text">View listing</small></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Listings Row 3 -->
+          <div class="row listing-row3">
+
+            <div class="col-lg-3 col-md-6 col-xs-12 listing-col">
+              <div class="card">
+                <img src="images/listings//house1.jpg" class="card-img-top" alt="card-img-top">
+                <div class="card-body">
+                  <h5 class="card-title">#1 Falls Road</h5>
+                  <h3 class="card-price">£90,000</h3>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                    additional content. This content is a little bit longer.</p>
+                  <p class="card-text"><small class="view-text">View listing</small></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-xs-12 listing-col">
+              <div class="card">
+                <img src="images/listings//house1.jpg" class="card-img-top" alt="card-img-top">
+                <div class="card-body">
+                  <h5 class="card-title">#2 Falls Road</h5>
+                  <h3 class="card-price">£90,000</h3>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                    additional content. This content is a little bit longer.</p>
+                  <p class="card-text"><small class="view-text">View listing</small></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-xs-12 listing-col">
+              <div class="card">
+                <img src="images/listings//house1.jpg" class="card-img-top" alt="card-img-top">
+                <div class="card-body">
+                  <h5 class="card-title">#3 Falls Road</h5>
+                  <h3 class="card-price">£90,000</h3>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                    additional content. This content is a little bit longer.</p>
+                  <p class="card-text"><small class="view-text">View listing</small></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-xs-12 listing-col">
+              <div class="card">
+                <img src="images/listings//house1.jpg" class="card-img-top" alt="card-img-top">
+                <div class="card-body">
+                  <h5 class="card-title">#4 Falls Road</h5>
+                  <h3 class="card-price">£90,000</h3>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                    additional content. This content is a little bit longer.</p>
+                  <p class="card-text"><small class="view-text">View listing</small></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="js/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/site.js"></script>
+  <script src="js/listings.js"></script>
   </div>
 </body>
 
