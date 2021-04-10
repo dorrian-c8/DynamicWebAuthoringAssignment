@@ -43,6 +43,7 @@
 
           <div class="row row-filter">
             <div class="col-12">
+              <span class="address-filter">Sale Type</span>
               <div class="custom-control custom-radio">
                 <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
                 <label class="custom-control-label" for="customRadio1">Rent</label>
@@ -60,7 +61,15 @@
 
           <div class="row row-filter">
             <div class="col-10">
-              <div class="dropdown">
+              <span class="address-filter">Bedrooms</span>
+              <select id="bedroom-select" class="custom-select">
+                <option selected>-Please Choose-</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4+</option>
+              </select>
+              <!-- <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Bedrooms
@@ -71,7 +80,7 @@
                   <a class="dropdown-item" href="#!">3</a>
                   <a class="dropdown-item" href="#!">4+</a>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>

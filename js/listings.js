@@ -37,6 +37,17 @@ $(document).ready(function () {
                 resetProperties();
             }
         });
+
+        $('#bedroom-select').change(function () {
+            var searchObj = getSearchParams();
+            if (Object.keys(searchObj).length > 0) {
+                var results = multipleFilterProperties(json.houses, searchObj);
+                displayProperties(results);
+            } else {
+                resetProperties();
+            }
+        });
+
     } else {
         const urlParams = new URLSearchParams(window.location.search);
         const propertyId = urlParams.get('id');
@@ -56,7 +67,7 @@ $(document).ready(function () {
         $('.add-fave').click(function () {
             var button = this;
             var favProperties = localStorage.getItem('favProperties');
-            if (favProperties == null) {
+            if (favProperties == null || favProperties.length < 1) {
                 favProperties = new Array();
             }
 
@@ -92,6 +103,27 @@ $(document).ready(function () {
             }
             $('.num').text($('.fav-property').length);
         });
+
+        var form = document.getElementById("my-form");
+    
+        async function handleSubmit(event) {
+          event.preventDefault();
+          var status = document.getElementById("status");
+          var data = new FormData(event.target);
+          fetch(event.target.action, {
+            method: form.method,
+            body: data,
+            headers: {
+                'Accept': 'application/json'
+            }
+          }).then(response => {
+            status.innerHTML = "Thanks for your submission!";
+            form.reset()
+          }).catch(error => {
+            status.innerHTML = "Oops! There was a problem submitting your form"
+          });
+        }
+        form.addEventListener("submit", handleSubmit)
     }
 });
 
@@ -124,14 +156,19 @@ function displaySingleProperty(property) {
         $('#address').text(property.Address);
 
         setFavButtonWording(property.Id);
+        $('#btn-AddFave').after('<a class="btn btn-block" href="contact.html?address=' + property.Address + '">Make an enquiry</a>');
+        $('#btn-AddFave').after('<a class="btn btn-block" href="mailto:?subject=Check%20out%20' + property.Address + '&amp;body=View%20the%20property%20at%20' + window.location.href + '">Email to a friend</a>');        
 
         $('.carousel-item').remove();
+        $('.list-inline-item').remove();
 
         $(property.Images).each(function () {
             if ($('.carousel-item').length < 1) {
                 $('.carousel-caption').after('<div class="active carousel-item" data-slide-number="0"><img class="d-block w-100" src="' + this + '" alt="Propery Image ' + $('.carousel-item').length + '"></div>');
+                $('.carousel-indicators').append('<li class="list-inline-item active"> <a id="carousel-selector-' + $('.list-inline-item').length + '" class="selected" data-slide-to="' + $('.list-inline-item').length + '" data-target="#propertyCarousel"> <img class="d-block w-100" src="' + this + '" alt="Propery Thumbnail Image ' + $('.carousel-item').length + '"></a> </li>');
             } else {
                 $('.carousel-item').last().after('<div class="carousel-item" ><img class="d-block w-100" src="' + this + '" alt="Propery Image ' + $('.carousel-item').length + '"></div>');
+                $('.carousel-indicators').append('<li class="list-inline-item"> <a id="carousel-selector-' + $('.list-inline-item').length + '" class="selected" data-slide-to="' + $('.list-inline-item').length + '" data-target="#propertyCarousel"> <img class="d-block w-100" src="' + this + '" alt="Propery Thumbnail Image ' + $('.list-inline-item').length + '"></a> </li>');
             }
         });
         $('.carousel-indicators li').first().addClass('active');
@@ -209,40 +246,41 @@ function getSearchParams() {
     var saleTypeId = $("[name='customRadio']:checked").attr('id');
     var saleType = $('label[for="' + saleTypeId + '"]').text();
     saleType = saleType == 'Both' ? '' : saleType; // if saletype == Both display all
-    var bedrooms = '';
+    var bedrooms = $('#bedroom-select option:selected').attr('value');
+    console.log(bedrooms);
 
     // all params selected
-    if (address.length > 0 && saleType.length > 0 && bedrooms.length > 0) {
+    if (address.length > 0 && saleType.length > 0 && bedrooms.length !== undefined) {
         return { "Address": address, "SaleType": saleType, "Bedrooms": bedrooms };
     }
 
     // only address
-    if (address.length > 0 && saleType.length < 1 && bedrooms.length < 1) {
+    if (address.length > 0 && saleType.length < 1 && bedrooms.length == undefined) {
         return { "Address": address };
     }
 
     // address and sale type
-    if (address.length > 0 && saleType.length > 0 && bedrooms.length < 1) {
+    if (address.length > 0 && saleType.length > 0 && bedrooms.length == undefined) {
         return { "Address": address, "SaleType": saleType };
     }
 
     // address and bedrooms
-    if (address.length > 0 && saleType.length < 1 && bedrooms.length > 0) {
+    if (address.length > 0 && saleType.length < 1 && bedrooms.length !== undefined) {
         return { "Address": address, "Bedrooms": bedrooms };
     }
 
     // saletype and bedroom
-    if (address.length < 1 && saleType.length > 0 && bedrooms.length > 0) {
+    if (address.length < 1 && saleType.length > 0 && bedrooms.length !== undefined) {
         return { "SaleType": saleType, "Bedrooms": bedrooms };
     }
 
     // only saletype
-    if (address.length < 1 && saleType.length > 0 && bedrooms.length < 1) {
+    if (address.length < 1 && saleType.length > 0 && bedrooms.length == undefined) {
         return { "SaleType": saleType };
     }
 
     // only bedroom
-    if (address.length < 1 && saleType.length < 1 && bedrooms.length > 0) {
+    if (address.length < 1 && saleType.length < 1 && bedrooms.length !== undefined) {
         return { "Bedrooms": bedrooms };
     }
     return {}
@@ -292,7 +330,15 @@ function multipleFilterProperties(obj, searchParams) {
         var house = this;
         var found = false;
         for (var key in searchParams) {
-            if (house[key].toLowerCase().includes(searchParams[key].toLowerCase())) {
+            if (key == "Bedrooms"){
+                if (searchParams[key] == 4 && house[key] >= 4){
+                    found = true;
+                    results.push(house);
+                }else if (searchParams[key] == house[key]){
+                    found = true;
+                    results.push(house);
+                }
+            } else if (house[key].toLowerCase().includes(searchParams[key].toLowerCase())) {
                 found = true;
                 results.push(house); // push this into the array if it matches the criteria
             } else {

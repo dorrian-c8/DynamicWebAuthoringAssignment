@@ -50,7 +50,7 @@ table{
     color: #439CB5;
     text-align: center;
 }
-.btn-group-vertical button {
+.btn-group-vertical button, .btn-group-vertical a {
     background-color: #439CB5; 
     border: 1px solid #439CB5; 
     color: white;
@@ -58,12 +58,15 @@ table{
     padding-top: 5px;
     padding-bottom: 5px;
     display: block; 
-    border-radius: 8px;
-    margin-top: 30px;
+    border-radius: 8px !important;
+    margin-top: 10px !important;
+  }
+
+  .btn-group-vertical a:hover{
+      color: white;
   }
 
 .additional-info{
-    margin-top: 50px;
     color: #439CB5; 
 }
 .form-container{
@@ -89,4 +92,43 @@ table{
 
 .modal-body iframe {
     width: 100%;
+}
+
+.carousel-inner img {
+    width: 100%;
+    height: 100%
+}
+
+#propertyCarousel .carousel-indicators {
+    position: static;
+    margin-top: 20px
+}
+
+#propertyCarousel .carousel-indicators>li {
+    width: 100px
+}
+
+#propertyCarousel .carousel-indicators li img {
+    display: block;
+    opacity: 0.5
+}
+
+#propertyCarousel .carousel-indicators li.active img {
+    opacity: 1
+}
+
+#propertyCarousel .carousel-indicators li:hover img {
+    opacity: 0.75
+}
+
+.carousel-item img {
+    width: 80%
+}
+
+.carousel-indicators {
+    z-index: 1;
+}
+
+.list-inline-item:hover, .list-inline-item a:hover, .list-inline-item img:hover {
+    cursor: pointer;
 }
