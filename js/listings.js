@@ -7,7 +7,6 @@ $(document).ready(function () {
         localStorage.setItem('properties', JSON.stringify(propertyObject));
     } else {
         if (retrievedObject != JSON.stringify(propertyObject)) {
-            localStorage.getItem('properties');
             localStorage.setItem('properties', JSON.stringify(propertyObject));
         }
     }
@@ -17,12 +16,13 @@ $(document).ready(function () {
 
     // if address-filter-input exists we are on listings page
     if ($('#address-filter-input').length > 0) {
-        propertySearch(json);
+
         $('#address-filter-input').on('input', function () {
             propertySearch(json);
         });
 
         $('[name="customRadio"]').change(function () {
+            updateUrlParam();
             propertySearch(json);
         });
 
@@ -35,21 +35,35 @@ $(document).ready(function () {
             $('#bedroom-select').val('-Please Choose-');
             $('#bedroom-select').change();
             $("[name='customRadio']:checked").removeAttr("checked");
+            $('.search-term').remove();
+            var newurl = window.location.href.split('?')[0];
+            window.history.pushState({ path: newurl }, '', newurl);
             resetProperties(json);
         });
 
+        const urlParams = new URLSearchParams(window.location.search);
+        var properties = json.houses;
+        const searchTerm = urlParams.get('searchTerm');
+        if (searchTerm != null) {
+            $('.dream').after('<div class="search-term"><br><span>Showing results for search: ' + unescape(searchTerm) + '</span></div>');
+            properties = searchAllProperties(properties, unescape(searchTerm))
+        }
+
+        const saleType = urlParams.get('saleType');
+        if (saleType != null) {
+            if (saleType == 'Buy') {
+                $('#customRadio2').attr('checked', true);
+                properties = multipleFilterProperties(properties, { "SaleType": "Buy" });
+            }
+            if (saleType == 'Rent') {
+                $('#customRadio1').attr('checked', true);
+                properties = multipleFilterProperties(properties, { "SaleType": "Rent" });
+            }
+        }
+        displayProperties(properties);
     } else {
         const urlParams = new URLSearchParams(window.location.search);
         const propertyId = urlParams.get('id');
-        // Retrieve the object from storage
-        var retrievedObject = localStorage.getItem('properties');
-
-        // Put the object into storage
-        if (retrievedObject == null) {
-            localStorage.setItem('properties', JSON.stringify(propertyObject));
-        }
-        retrievedObject = localStorage.getItem('properties');
-        var json = JSON.parse(retrievedObject);
 
         var property = getPropertyById(json.houses, propertyId);
         displaySingleProperty(property);
@@ -117,11 +131,50 @@ $(document).ready(function () {
     }
 });
 
+function updateUrlParam() {
+    const urlParams = new URLSearchParams(window.location.search);
+
+    const saleType = urlParams.get('saleType');
+    if (saleType != null) {
+        var saleTypeId = $("[name='customRadio']:checked").attr('id');
+        var saleTypeVal = $('label[for="' + saleTypeId + '"]').text();
+        saleTypeVal = saleTypeVal == 'Both' ? '' : saleTypeVal; // if saletype == Both display all
+
+        if (saleTypeVal.length > 0) {
+            var newurl = window.location.href.split(saleType)[0] + saleTypeVal;
+            window.history.pushState({ path: newurl }, '', newurl);
+        }
+    }
+}
+
 function propertySearch(json) {
+    const urlParams = new URLSearchParams(window.location.search);
+    var properties = json.houses;
+    const searchTerm = urlParams.get('searchTerm');
+    if (searchTerm != null) {
+        properties = searchAllProperties(properties, unescape(searchTerm))
+    }
+
+    const saleType = urlParams.get('saleType');
+    var saleTypeId = $("[name='customRadio']:checked").attr('id');
+    var saleTypeVal = $('label[for="' + saleTypeId + '"]').text();
+    if (saleType != null) {
+        if (saleTypeVal != 'Both') {
+            if (saleType == 'Buy') {
+                properties = multipleFilterProperties(properties, { "SaleType": "Buy" });
+            }
+            if (saleType == 'Rent') {
+                properties = multipleFilterProperties(properties, { "SaleType": "Rent" });
+            }
+        }
+    }
+
     var searchObj = getSearchParams();
     if (Object.keys(searchObj).length > 0) {
-        var results = multipleFilterProperties(json.houses, searchObj);
+        var results = multipleFilterProperties(properties, searchObj);
         displayProperties(results);
+    } else if ((Object.keys(searchObj).length == 0 && saleTypeVal == 'Both') || (Object.keys(searchObj).length == 0 && searchTerm != null)) {
+        displayProperties(properties);
     } else {
         resetProperties();
     }
@@ -287,8 +340,10 @@ function getSearchParams() {
 
 function searchHouseAttributes(obj, str) {
     for (var key in obj) {
-        if (obj[key].includes(str)) {
-            return this;
+        if (typeof (obj[key]) == typeof (str)) {
+            if (obj[key].toLowerCase().includes(str.toLowerCase())) {
+                return this;
+            }
         }
     }
 }
@@ -604,7 +659,7 @@ var propertyObject = {
             "Description": "Immaculately presented spacious detached home, situated in Belfast, it enjoys a good position within a popular and quiet cul-de-sac with an open outlook to the front with an enclosed private garden. The property is convenient location to the local shops and Carrick primary school is within walking distance, making it desirable for those with young families. The interior of the home has been finished to a very high ‘Show home’ specification and provides bright, spacious accommodation. Accommodation comprises of; Hallway, Reception Room, Kitchen/Dining Room, Three Bedrooms, and Bathroom. There is a tarmac driveway with off street parking for several vehicles. Early Viewing is highly recommended.",
             "MapHtml": '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1158.2481961086469!2d-6.059753412914514!3d54.50710657962411!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486104635e6ef0a7%3A0x7cfb28ea31729258!2s13%20Jubilee%20Ave%2C%20Lisburn%20BT28%201EB!5e0!3m2!1sen!2suk!4v1617957253292!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>',
             "Images": ["./images/listings/house11/img1.png",
-                "./images/listings/house111img2.png",
+                "./images/listings/house11/img2.png",
                 "./images/listings/house11/img3.png",
                 "./images/listings/house11/img4.png",
                 "./images/listings/house11/img5.png",
