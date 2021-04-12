@@ -100,3 +100,194 @@ a .fa {
     right: 19px;
     font-family: 'Poppins';
   }
+  body.Homepage
+{
+    background-image: url("../images/Index/house2.jpg"); 
+    background-attachment: fixed;
+    background-size: auto; 
+    background-image: cover;
+    
+}
+body
+{
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+
+}
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+
+.searchTerm {
+  width: 100%;
+  border: 6px solid #00DEFF;
+  border-right: none;
+  padding: 5px;
+  height: 60px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #000000;
+}
+
+.searchTerm:focus{
+  color: #000000;
+}
+
+.searchButton {
+  width: 40px;
+  height: 60px;
+  border: 1px solid #00DEFF;
+  background: #00DEFF;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap{
+  width: 30%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+/* Style the container with a rounded border, grey background and some padding and margin */
+.container {
+  border: 2px solid #ccc;
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  padding: 16px;
+  margin: 16px 0;
+  width: 500px;
+  height: 200px;
+}
+
+/* Clear floats after containers */
+.container::after {
+  content: "";
+  clear: both;
+  display: table;
+
+}
+
+/* Float images inside the container to the left. Add a right margin, and style the image as a circle */
+.container img {
+  float: left;
+  margin-right: 20px;
+  height: auto;
+  
+}
+
+/* Increase the font-size of a span element */
+.container span {
+  font-size: 25px;
+  margin-right: 15px;
+}
+
+  .container img {
+    margin: auto;
+    float: none;
+    display: block;
+  }
+
+  *{
+    margin: 0;
+    padding: 0;
+  }
+  .testimonials{
+    padding: 40px 0;
+    background: #f1f1f1;
+    color: #434343;
+    text-align: center;
+  }
+  .inner{
+    max-width: 1200px;
+    margin: auto;
+    overflow: hidden;
+    padding: 0 20px;
+  }
+
+  .border{
+    width: 160px
+    height: 5px;
+    background: #00DEFF;
+    margin: 26px auto;
+  }
+
+  .row{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .col{
+    flex: 33.33%;
+    max-width: 33.33%;
+    box-sizing: border-box;
+    padding: 15px;
+  }
+  .testimonial{
+    background: #fff;
+    padding: 30px;
+
+  }
+  .testimonial img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+  .name{
+    font-size: 20px;
+    text-transform: uppercase;
+    margin: 20px 0;
+  }
+  .stars{
+    color: #439CB5;
+    margin-bottom: 20px;
+  }
+
+/* Style the button and place it in the middle of the container/image */
+.button .btn1 {
+  position: absolute;
+  top: 100px;
+  left: 120px;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #00DEFF;
+  color: white;
+  font-size: 20px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.button .btn1:hover {
+  background-color: #439CB5;
+}
+.button .btn2 {
+  position: absolute;
+  top: 100px;
+  left: 350px;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #00DEFF;
+  color: white;
+  font-size: 20px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.button .btn2:hover {
+  background-color: #439CB5;
+}
