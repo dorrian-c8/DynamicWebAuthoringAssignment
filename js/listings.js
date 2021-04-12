@@ -17,35 +17,25 @@ $(document).ready(function () {
 
     // if address-filter-input exists we are on listings page
     if ($('#address-filter-input').length > 0) {
-        resetProperties();
+        propertySearch(json);
         $('#address-filter-input').on('input', function () {
-            var searchObj = getSearchParams();
-            if (Object.keys(searchObj).length > 0) {
-                var results = multipleFilterProperties(json.houses, searchObj);
-                displayProperties(results);
-            } else {
-                resetProperties();
-            }
+            propertySearch(json);
         });
 
         $('[name="customRadio"]').change(function () {
-            var searchObj = getSearchParams();
-            if (Object.keys(searchObj).length > 0) {
-                var results = multipleFilterProperties(json.houses, searchObj);
-                displayProperties(results);
-            } else {
-                resetProperties();
-            }
+            propertySearch(json);
         });
 
         $('#bedroom-select').change(function () {
-            var searchObj = getSearchParams();
-            if (Object.keys(searchObj).length > 0) {
-                var results = multipleFilterProperties(json.houses, searchObj);
-                displayProperties(results);
-            } else {
-                resetProperties();
-            }
+            propertySearch(json);
+        });
+
+        $('#btn-Clear').click(function () {
+            $('#address-filter-input').val('');
+            $('#bedroom-select').val('-Please Choose-');
+            $('#bedroom-select').change();
+            $("[name='customRadio']:checked").removeAttr("checked");
+            resetProperties(json);
         });
 
     } else {
@@ -76,9 +66,9 @@ $(document).ready(function () {
                 $(JSON.parse(favProperties)).each(function () {
                     newProps.push(this);
                 });
-                newProps.push({ "Id" : propertyId, "Address" : $('#address').text() });
+                newProps.push({ "Id": propertyId, "Address": $('#address').text() });
                 localStorage.setItem('favProperties', JSON.stringify(newProps));
-                $('#no-favourites').after('<a class="dropdown-item fav-property" data-fave-id="' + propertyId + '" href="singleListing.html?id=' + propertyId + '">' + $('#address').text() +'</a>');
+                $('#no-favourites').after('<a class="dropdown-item fav-property" data-fave-id="' + propertyId + '" href="singleListing.html?id=' + propertyId + '">' + $('#address').text() + '</a>');
                 $('#no-favourites').hide();
                 $(button).text('Remove from favourites');
             } else {
@@ -91,8 +81,8 @@ $(document).ready(function () {
 
                 localStorage.setItem('favProperties', JSON.stringify(newProps));
 
-                $('.fav-property').each(function() {
-                    if (Number($(this).attr('data-fave-id')) == propertyId){
+                $('.fav-property').each(function () {
+                    if (Number($(this).attr('data-fave-id')) == propertyId) {
                         $(this).remove();
                     }
                 });
@@ -105,27 +95,37 @@ $(document).ready(function () {
         });
 
         var form = document.getElementById("my-form");
-    
+
         async function handleSubmit(event) {
-          event.preventDefault();
-          var status = document.getElementById("status");
-          var data = new FormData(event.target);
-          fetch(event.target.action, {
-            method: form.method,
-            body: data,
-            headers: {
-                'Accept': 'application/json'
-            }
-          }).then(response => {
-            status.innerHTML = "Thanks for your submission!";
-            form.reset()
-          }).catch(error => {
-            status.innerHTML = "Oops! There was a problem submitting your form"
-          });
+            event.preventDefault();
+            var status = document.getElementById("status");
+            var data = new FormData(event.target);
+            fetch(event.target.action, {
+                method: form.method,
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                status.innerHTML = "Thanks for your submission!";
+                form.reset()
+            }).catch(error => {
+                status.innerHTML = "Oops! There was a problem submitting your form"
+            });
         }
         form.addEventListener("submit", handleSubmit)
     }
 });
+
+function propertySearch(json) {
+    var searchObj = getSearchParams();
+    if (Object.keys(searchObj).length > 0) {
+        var results = multipleFilterProperties(json.houses, searchObj);
+        displayProperties(results);
+    } else {
+        resetProperties();
+    }
+}
 
 function resetProperties() {
     // Retrieve the object from storage
@@ -140,7 +140,7 @@ function setFavButtonWording(propertyId) {
     if (favProperties == null || favProperties.length < 1) {
         return;
     }
-    $(JSON.parse(favProperties)).each(function () {        
+    $(JSON.parse(favProperties)).each(function () {
         if (Number(this["Id"]) == propertyId) {
             $('#btn-AddFave').text('Remove from favourites');
         }
@@ -157,7 +157,7 @@ function displaySingleProperty(property) {
 
         setFavButtonWording(property.Id);
         $('#btn-AddFave').after('<a class="btn btn-block" href="contact.html?address=' + property.Address + '">Make an enquiry</a>');
-        $('#btn-AddFave').after('<a class="btn btn-block" href="mailto:?subject=Check%20out%20' + property.Address + '&amp;body=View%20the%20property%20at%20' + window.location.href + '">Email to a friend</a>');        
+        $('#btn-AddFave').after('<a class="btn btn-block" href="mailto:?subject=Check%20out%20' + property.Address + '&amp;body=View%20the%20property%20at%20' + window.location.href + '">Email to a friend</a>');
 
         $('.carousel-item').remove();
         $('.list-inline-item').remove();
@@ -247,40 +247,39 @@ function getSearchParams() {
     var saleType = $('label[for="' + saleTypeId + '"]').text();
     saleType = saleType == 'Both' ? '' : saleType; // if saletype == Both display all
     var bedrooms = $('#bedroom-select option:selected').attr('value');
-    console.log(bedrooms);
 
     // all params selected
-    if (address.length > 0 && saleType.length > 0 && bedrooms.length !== undefined) {
+    if (address.length > 0 && saleType.length > 0 && bedrooms !== undefined) {
         return { "Address": address, "SaleType": saleType, "Bedrooms": bedrooms };
     }
 
     // only address
-    if (address.length > 0 && saleType.length < 1 && bedrooms.length == undefined) {
+    if (address.length > 0 && saleType.length < 1 && bedrooms == undefined) {
         return { "Address": address };
     }
 
     // address and sale type
-    if (address.length > 0 && saleType.length > 0 && bedrooms.length == undefined) {
+    if (address.length > 0 && saleType.length > 0 && bedrooms == undefined) {
         return { "Address": address, "SaleType": saleType };
     }
 
     // address and bedrooms
-    if (address.length > 0 && saleType.length < 1 && bedrooms.length !== undefined) {
+    if (address.length > 0 && saleType.length < 1 && bedrooms !== undefined) {
         return { "Address": address, "Bedrooms": bedrooms };
     }
 
-    // saletype and bedroom
-    if (address.length < 1 && saleType.length > 0 && bedrooms.length !== undefined) {
+    // saletype and 
+    if (address.length < 1 && saleType.length > 0 && bedrooms !== undefined) {
         return { "SaleType": saleType, "Bedrooms": bedrooms };
     }
 
     // only saletype
-    if (address.length < 1 && saleType.length > 0 && bedrooms.length == undefined) {
+    if (address.length < 1 && saleType.length > 0 && bedrooms == undefined) {
         return { "SaleType": saleType };
     }
 
     // only bedroom
-    if (address.length < 1 && saleType.length < 1 && bedrooms.length !== undefined) {
+    if (address.length < 1 && saleType.length < 1 && bedrooms !== undefined) {
         return { "Bedrooms": bedrooms };
     }
     return {}
@@ -330,11 +329,11 @@ function multipleFilterProperties(obj, searchParams) {
         var house = this;
         var found = false;
         for (var key in searchParams) {
-            if (key == "Bedrooms"){
-                if (searchParams[key] == 4 && house[key] >= 4){
+            if (key == "Bedrooms") {
+                if (searchParams[key] == 4 && house[key] >= 4) {
                     found = true;
                     results.push(house);
-                }else if (searchParams[key] == house[key]){
+                } else if (searchParams[key] == house[key]) {
                     found = true;
                     results.push(house);
                 }
