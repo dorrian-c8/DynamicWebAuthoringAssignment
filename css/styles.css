@@ -34,6 +34,10 @@ a .fa {
     margin-right: auto;
 }
 
+.nav-link.active {
+    font-weight: bold;
+}
+
 @media only screen and (max-width: 991px) {
 
     .navbar-nav {
@@ -77,48 +81,22 @@ a .fa {
     }
   }
 
-
 .pageHeading {
     color: #439CB5;
 }
 
-ul.about-info{
-    margin-top: 5rem;
-}
-
-ul.about-info, ul.team-info {
-    list-style: none;
-}
-
-div.card {
-    width: 90%;
-}
-
-ul.about-info li .fa {
-    color: #439CB5;
-    width: 45px;
-    vertical-align: middle;
-}
-
-ul.team-info li {
-    font-size: 14px;
-}
-
-ul.team-info li .fa {
-    color: #439CB5;
-    width: 25px;
-    vertical-align: middle;
-}
-
-div.card-body.member-name {
-    padding: 0px 1rem;
-    background-color: #EBEBEB;
-    text-align: center;
-}
-
-.google-map iframe {
-    width: 80%;
-    height: 300px;
-    border-radius: 5px;
-    margin: auto;
-}
+  span.fa-circle {
+    position: absolute;
+    font-size: 0.6em;
+    top: 4px;
+    color: red;
+    right: 14px;
+  }
+  span.num {
+    position: absolute;
+    font-size: 0.4em;
+    top: 7px;
+    color: #fff;
+    right: 19px;
+    font-family: 'Poppins';
+  }
