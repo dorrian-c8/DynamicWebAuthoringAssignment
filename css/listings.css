@@ -71,6 +71,7 @@
 .card-img-top {
     border-top-left-radius: 25px !important;
     border-top-right-radius: 25px !important;
+    max-height:200px;
 }
 
 .card-title {
@@ -88,29 +89,31 @@
     margin-top: 50px;
 }
 
-.view-text {
+.card-button {
     font-weight: 500;
-    color: rgb(0, 80, 117);
     cursor: pointer;
-    padding: 4px 8px;
     border-radius: 10px;
-    transition: 0.2s ease;
+    transition: 0.1s ease-in;
     float: right;
+    font-size: 12px;
+    background: none;
+    border:none;
     
 }
 
-.view-text:hover {
-    background:rgb(0, 80, 117);
+.card-button:hover {
     transform: scale(1.05);
-    color: white;
 }
 
-.view-text a:hover {
-    background:rgb(0, 80, 117);
-    transform: scale(1.05);
-    color: white;
-    text-decoration: none;
+.card-button a {
+    color: blue;
 }
+
+.card-button a:hover {
+    color: blue;
+    text-decoration: none !important;
+}
+
 
 @media screen and (max-width: 991px) {
     .filter-container{
