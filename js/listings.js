@@ -259,7 +259,7 @@ function displayProperties(properties) {
                     '<h5 class="card-title">' + this.Address + '</h5>' +
                     '<h3 class="card-price">£' + this.Price.toLocaleString() + '</h3>' +
                     '<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>' +
-                    '<p class="card-text"><small class="view-text"><a href="singleListing.html?id=' + this.Id + '">View listing</a></small></p>' +
+                    '<button class="card-button"><a href="singleListing.html?id=' + this.Id + '">View listing</a></button>' +
                     '</div>' +
                     '</div>' +
                     '</div>');
@@ -271,7 +271,7 @@ function displayProperties(properties) {
                     '<h5 class="card-title">' + this.Address + '</h5>' +
                     '<h3 class="card-price">£' + this.Price.toLocaleString() + '</h3>' +
                     '<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>' +
-                    '<p class="card-text"><small class="view-text"><a href="singleListing.html?id=' + this.Id + '">View listing</a></small></p>' +
+                    '<button class="card-button"><a href="singleListing.html?id=' + this.Id + '">View listing</a></button>' +
                     '</div>' +
                     '</div>' +
                     '</div>');
@@ -283,7 +283,7 @@ function displayProperties(properties) {
                     '<h5 class="card-title">' + this.Address + '</h5>' +
                     '<h3 class="card-price">£' + this.Price.toLocaleString() + '</h3>' +
                     '<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>' +
-                    '<p class="card-text"><small class="view-text"><a href="singleListing.html?id=' + this.Id + '">View listing</a></small></p>' +
+                    '<button class="card-button"><a href="singleListing.html?id=' + this.Id + '">View listing</a></button>' +
                     '</div>' +
                     '</div>' +
                     '</div>');
@@ -437,65 +437,65 @@ var propertyObject = {
     "houses": [
         {
             "Id": 1,
-            "Address": "71 Stormwind Street, Belfast, BT17 0UG",
-            "Price": 160000,
+            "Address": "14 Garnerville Park, Belfast, BT4",
+            "Price": 169950,
             "SaleType": "Buy",
             "Bedrooms": 3,
-            "Bathrooms": 2,
+            "Bathrooms": 1,
             "Receptions": 1,
-            "Type": "Detached",
+            "Type": "Semi-detached",
             "HeatingType": "Oil",
-            "MainImg": "./images/listings/house1/img1.png",
+            "MainImg": "./images/listings/house1/img1.jpg",
             "Description": "Immaculately presented spacious detached home, situated in Belfast, it enjoys a good position within a popular and quiet cul-de-sac with an open outlook to the front with an enclosed private garden. The property is convenient location to the local shops and Carrick primary school is within walking distance, making it desirable for those with young families. The interior of the home has been finished to a very high ‘Show home’ specification and provides bright, spacious accommodation. Accommodation comprises of; Hallway, Reception Room, Kitchen/Dining Room, Three Bedrooms, and Bathroom. There is a tarmac driveway with off street parking for several vehicles. Early Viewing is highly recommended.",
-            "MapHtml": '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1158.2481961086469!2d-6.059753412914514!3d54.50710657962411!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486104635e6ef0a7%3A0x7cfb28ea31729258!2s13%20Jubilee%20Ave%2C%20Lisburn%20BT28%201EB!5e0!3m2!1sen!2suk!4v1617957253292!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>',
-            "Images": ["./images/listings/house1/img1.png",
-                "./images/listings/house1/img2.png",
-                "./images/listings/house1/img3.png",
-                "./images/listings/house1/img4.png",
-                "./images/listings/house1/img5.png",
-                "./images/listings/house1/img6.png"
+            "MapHtml": '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2310.418270022023!2d-5.860380983969594!3d54.61424008026423!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48610a269db405e1%3A0x18bec6dfeccf6351!2sGarnerville%20Park%2C%20Belfast!5e0!3m2!1sen!2suk!4v1618353377872!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>',
+            "Images": ["./images/listings/house1/img1.jpg",
+                "./images/listings/house1/img2.jpg",
+                "./images/listings/house1/img3.jpg",
+                "./images/listings/house1/img4.jpg",
+                "./images/listings/house1/img5.jpg",
+                "./images/listings/house1/img6.jpg"
             ]
         },
         {
             "Id": 2,
-            "Address": "#2 Belfast Avenue",
-            "Price": 90000,
-            "SaleType": "Buy",
-            "Bedrooms": 3,
-            "Bathrooms": 2,
+            "Address": "3 Stockmans Lane, Belfast, BT9",
+            "Price": 800 + " pm",
+            "SaleType": "Rent",
+            "Bedrooms": 1,
+            "Bathrooms": 1,
             "Receptions": 1,
             "Type": "Detached",
             "HeatingType": "Oil",
-            "MainImg": "./images/listings/house2/img1.png",
+            "MainImg": "./images/listings/house2/img1.jpg",
             "Description": "Immaculately presented spacious detached home, situated in Belfast, it enjoys a good position within a popular and quiet cul-de-sac with an open outlook to the front with an enclosed private garden. The property is convenient location to the local shops and Carrick primary school is within walking distance, making it desirable for those with young families. The interior of the home has been finished to a very high ‘Show home’ specification and provides bright, spacious accommodation. Accommodation comprises of; Hallway, Reception Room, Kitchen/Dining Room, Three Bedrooms, and Bathroom. There is a tarmac driveway with off street parking for several vehicles. Early Viewing is highly recommended.",
-            "MapHtml": '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1158.2481961086469!2d-6.059753412914514!3d54.50710657962411!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486104635e6ef0a7%3A0x7cfb28ea31729258!2s13%20Jubilee%20Ave%2C%20Lisburn%20BT28%201EB!5e0!3m2!1sen!2suk!4v1617957253292!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>',
-            "Images": ["./images/listings/house2/img1.png",
-                "./images/listings/house2/img2.png",
-                "./images/listings/house2/img3.png",
-                "./images/listings/house2/img4.png",
-                "./images/listings/house2/img5.png",
-                "./images/listings/house2/img6.png"
+            "MapHtml": '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d795.3354010237257!2d-5.97508481334179!3d54.57242927925835!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48610620273a3943%3A0xaf51b5464bbbab69!2sStockmans%20Ln%2C%20Belfast!5e0!3m2!1sen!2suk!4v1618353409782!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>',
+            "Images": ["./images/listings/house2/img1.jpg",
+                "./images/listings/house2/img2.jpg",
+                "./images/listings/house2/img3.jpg",
+                "./images/listings/house2/img4.jpg",
+                "./images/listings/house2/img5.jpg",
+                "./images/listings/house2/img6.jpg"
             ]
         },
         {
             "Id": 3,
-            "Address": "#3 Belfast Avenue",
-            "Price": 90000,
-            "SaleType": "Buy",
-            "Bedrooms": 6,
-            "Bathrooms": 2,
+            "Address": "37 Pine Cross Dunmurry, Belfast, BT17",
+            "Price": 500 + " pm",
+            "SaleType": "Rent",
+            "Bedrooms": 2,
+            "Bathrooms": 1,
             "Receptions": 1,
             "Type": "Detached",
             "HeatingType": "Oil",
-            "MainImg": "./images/listings/house3/img1.png",
+            "MainImg": "./images/listings/house3/img1.jpg",
             "Description": "Immaculately presented spacious detached home, situated in Belfast, it enjoys a good position within a popular and quiet cul-de-sac with an open outlook to the front with an enclosed private garden. The property is convenient location to the local shops and Carrick primary school is within walking distance, making it desirable for those with young families. The interior of the home has been finished to a very high ‘Show home’ specification and provides bright, spacious accommodation. Accommodation comprises of; Hallway, Reception Room, Kitchen/Dining Room, Three Bedrooms, and Bathroom. There is a tarmac driveway with off street parking for several vehicles. Early Viewing is highly recommended.",
-            "MapHtml": '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1158.2481961086469!2d-6.059753412914514!3d54.50710657962411!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486104635e6ef0a7%3A0x7cfb28ea31729258!2s13%20Jubilee%20Ave%2C%20Lisburn%20BT28%201EB!5e0!3m2!1sen!2suk!4v1617957253292!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>',
-            "Images": ["./images/listings/house3/img1.png",
-                "./images/listings/house3/img2.png",
-                "./images/listings/house3/img3.png",
-                "./images/listings/house3/img4.png",
-                "./images/listings/house3/img5.png",
-                "./images/listings/house3/img6.png"
+            "MapHtml": '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2314.4726487706803!2d-6.014786784247383!3d54.542793092120334!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486105d72c51d87d%3A0x2c7f2620c8d31db8!2sPine%20Cross%2C%20Dunmurry%2C%20Belfast!5e0!3m2!1sen!2suk!4v1618353257419!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>',
+            "Images": ["./images/listings/house3/img1.jpg",
+                "./images/listings/house3/img2.jpg",
+                "./images/listings/house3/img3.jpg",
+                "./images/listings/house3/img4.jpg",
+                "./images/listings/house3/img5.jpg",
+                "./images/listings/house3/img6.jpg"
             ]
         },
         {
