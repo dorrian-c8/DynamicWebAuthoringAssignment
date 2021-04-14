@@ -227,7 +227,7 @@ function displaySingleProperty(property) {
         $('.carousel-indicators li').first().addClass('active');
 
         property.SaleType.toLowerCase() == "buy" ? $('#saleType').text('For sale') : $('#saleType').text('For rent');
-        property.SaleType.toLowerCase() == "buy" ? $('.buy').html('<h6>TO BUY</h6>') : $('.buy').html('<h6>TO RENT</h6>');
+        property.SaleType.toLowerCase() == "buy" ? $('.buy').html('TO BUY') : $('.buy').html('TO RENT');
         $('#houseType').text(property.Type);
         $('#price').html('<b>from</b>  £' + property.Price.toLocaleString());
         $('#bedrooms').text(property.Bedrooms);
@@ -251,42 +251,27 @@ function displayProperties(properties) {
     } else {
         var count = 1;
         $(properties).each(function () {
+            var cardText = this.Description.length > 150 ? this.Description.substr(0, 150) + '...' : this.Description;
+            var html = '<div class="col-lg-3 col-md-6 col-xs-12 listing-col">' +
+                '<div class="card">' +
+                '<div class="sale-type">' +
+                this.SaleType +
+                '</div>' +
+                '<img src="' + this.MainImg + '" class="card-img-top" alt="card-img-top">' +
+                '<div class="card-body">' +
+                '<h5 class="card-title">' + this.Address + '</h5>' +
+                '<h3 class="card-price">£' + this.Price.toLocaleString() + '</h3>' +
+                '<p class="card-text">' + cardText + '</p>' +
+                '<p class="card-text"><small class="view-text"><a href="singleListing.html?id=' + this.Id + '">View listing</a></small></p>' +
+                '</div>' +
+                '</div>' +
+                '</div>';
             if (count <= 4) {
-                $('.listing-row1').append('<div class="col-lg-3 col-md-6 col-xs-12 listing-col">' +
-                    '<div class="card">' +
-                    '<img src="' + this.MainImg + '" class="card-img-top" alt="card-img-top">' +
-                    '<div class="card-body">' +
-                    '<h5 class="card-title">' + this.Address + '</h5>' +
-                    '<h3 class="card-price">£' + this.Price.toLocaleString() + '</h3>' +
-                    '<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>' +
-                    '<button class="card-button"><a href="singleListing.html?id=' + this.Id + '">View listing</a></button>' +
-                    '</div>' +
-                    '</div>' +
-                    '</div>');
+                $('.listing-row1').append(html);
             } else if (count > 4 && count <= 8) {
-                $('.listing-row').append('<div class="col-lg-3 col-md-6 col-xs-12 listing-col">' +
-                    '<div class="card">' +
-                    '<img src="' + this.MainImg + '" class="card-img-top" alt="card-img-top">' +
-                    '<div class="card-body">' +
-                    '<h5 class="card-title">' + this.Address + '</h5>' +
-                    '<h3 class="card-price">£' + this.Price.toLocaleString() + '</h3>' +
-                    '<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>' +
-                    '<button class="card-button"><a href="singleListing.html?id=' + this.Id + '">View listing</a></button>' +
-                    '</div>' +
-                    '</div>' +
-                    '</div>');
+                $('.listing-row').append(html);
             } else if (count > 8) {
-                $('.listing-row3').append('<div class="col-lg-3 col-md-6 col-xs-12 listing-col">' +
-                    '<div class="card">' +
-                    '<img src="' + this.MainImg + '" class="card-img-top" alt="card-img-top">' +
-                    '<div class="card-body">' +
-                    '<h5 class="card-title">' + this.Address + '</h5>' +
-                    '<h3 class="card-price">£' + this.Price.toLocaleString() + '</h3>' +
-                    '<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>' +
-                    '<button class="card-button"><a href="singleListing.html?id=' + this.Id + '">View listing</a></button>' +
-                    '</div>' +
-                    '</div>' +
-                    '</div>');
+                $('.listing-row3').append(html);
             }
             count++;
         });
