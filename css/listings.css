@@ -89,6 +89,20 @@
     margin-top: 50px;
 }
 
+.sale-type{
+    position:absolute;
+    background-color:#0AD4F4;
+    border-radius: 10px;
+    color: white;
+    padding-bottom: 0px;
+    padding: 5px;
+    margin-top: 7%;
+    margin-right: 2%;
+    right: 0px;
+    z-index: 1;
+    text-align: center;
+}
+
 .card-button {
     font-weight: 500;
     cursor: pointer;
