@@ -71,15 +71,18 @@ $(document).ready(function () {
         $('.add-fave').click(function () {
             var button = this;
             var favProperties = localStorage.getItem('favProperties');
+            console.log(favProperties);
             if (favProperties == null || favProperties.length < 1) {
-                favProperties = new Array();
+                favProperties = localStorage.setItem('favProperties', new Array());
             }
 
             if ($(button).text() == 'Add to favourites') {
                 var newProps = new Array();
-                $(JSON.parse(favProperties)).each(function () {
-                    newProps.push(this);
-                });
+                if (favProperties != null){
+                    $(JSON.parse(favProperties)).each(function () {
+                        newProps.push(this);
+                    });
+                }
                 newProps.push({ "Id": propertyId, "Address": $('#address').text() });
                 localStorage.setItem('favProperties', JSON.stringify(newProps));
                 $('#no-favourites').after('<a class="dropdown-item fav-property" data-fave-id="' + propertyId + '" href="singleListing.html?id=' + propertyId + '">' + $('#address').text() + '</a>');
@@ -252,7 +255,7 @@ function displayProperties(properties) {
         var count = 1;
         $(properties).each(function () {
             var cardText = this.Description.length > 150 ? this.Description.substr(0, 150) + '...' : this.Description;
-            var html = '<div class="col-lg-3 col-md-6 col-xs-12 listing-col">' +
+            var html = '<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 listing-col">' +
                 '<div class="card">' +
                 '<div class="sale-type">' +
                 this.SaleType +
@@ -548,7 +551,7 @@ var propertyObject = {
         },
         {
             "Id": 7,
-            "Address": "#3 Lisburn Lane",
+            "Address": "9 Glenavy Road",
             "Price": 90000,
             "SaleType": "Buy",
             "Bedrooms": 5,
@@ -557,8 +560,8 @@ var propertyObject = {
             "Type": "Detached",
             "HeatingType": "Oil",
             "MainImg": "./images/listings/house7/img1.png",
-            "Description": "Immaculately presented spacious detached home, situated in Belfast, it enjoys a good position within a popular and quiet cul-de-sac with an open outlook to the front with an enclosed private garden. The property is convenient location to the local shops and Carrick primary school is within walking distance, making it desirable for those with young families. The interior of the home has been finished to a very high ‘Show home’ specification and provides bright, spacious accommodation. Accommodation comprises of; Hallway, Reception Room, Kitchen/Dining Room, Three Bedrooms, and Bathroom. There is a tarmac driveway with off street parking for several vehicles. Early Viewing is highly recommended.",
-            "MapHtml": '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1158.2481961086469!2d-6.059753412914514!3d54.50710657962411!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486104635e6ef0a7%3A0x7cfb28ea31729258!2s13%20Jubilee%20Ave%2C%20Lisburn%20BT28%201EB!5e0!3m2!1sen!2suk!4v1617957253292!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>',
+            "Description": "Well located property situated a short distance from A1 dual carriageway, benefiting from a spacious garden and adjoining yard.",
+            "MapHtml": '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d730.2569252404732!2d-6.0989402707258975!3d54.53141597694995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486103ef756cb155%3A0x527d1aab2774b7c4!2s9%20Glenavy%20Rd%2C%20Lisburn%20BT28%203UT!5e1!3m2!1sen!2suk!4v1618584831777!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>',
             "Images": ["./images/listings/house7/img1.png",
                 "./images/listings/house7/img2.png",
                 "./images/listings/house7/img3.png",
@@ -569,17 +572,17 @@ var propertyObject = {
         },
         {
             "Id": 8,
-            "Address": "#4 Lisburn Lane",
-            "Price": 90000,
-            "SaleType": "Rent",
+            "Address": "1 Finlays Road, Newtownards BT22",
+            "Price": 290000,
+            "SaleType": "Buy",
             "Bedrooms": 1,
             "Bathrooms": 2,
             "Receptions": 1,
             "Type": "Detached",
             "HeatingType": "Oil",
             "MainImg": "./images/listings/house8/img1.png",
-            "Description": "Immaculately presented spacious detached home, situated in Belfast, it enjoys a good position within a popular and quiet cul-de-sac with an open outlook to the front with an enclosed private garden. The property is convenient location to the local shops and Carrick primary school is within walking distance, making it desirable for those with young families. The interior of the home has been finished to a very high ‘Show home’ specification and provides bright, spacious accommodation. Accommodation comprises of; Hallway, Reception Room, Kitchen/Dining Room, Three Bedrooms, and Bathroom. There is a tarmac driveway with off street parking for several vehicles. Early Viewing is highly recommended.",
-            "MapHtml": '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1158.2481961086469!2d-6.059753412914514!3d54.50710657962411!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486104635e6ef0a7%3A0x7cfb28ea31729258!2s13%20Jubilee%20Ave%2C%20Lisburn%20BT28%201EB!5e0!3m2!1sen!2suk!4v1617957253292!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>',
+            "Description": "Occupying an incredible site which looks directly onto Strangford Lough and is only separated by the width of the road, we are delighted to offer for sale this unique 4 bed detached family house and must strongly recommend internal inspection.",
+            "MapHtml": '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d686.6164163537404!2d-5.658359170720424!3d54.5720439987659!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTTCsDM0JzE5LjQiTiA1wrAzOScyOC4xIlc!5e1!3m2!1sen!2suk!4v1618585273814!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>',
             "Images": ["./images/listings/house8/img1.png",
                 "./images/listings/house8/img2.png",
                 "./images/listings/house8/img3.png",
@@ -590,17 +593,17 @@ var propertyObject = {
         },
         {
             "Id": 9,
-            "Address": "#1 Falls Road",
-            "Price": 90000,
-            "SaleType": "Buy",
+            "Address": "3 Killeen Avenue, Bangor BT19",
+            "Price": 450 + " pm",
+            "SaleType": "Rent",
             "Bedrooms": 2,
             "Bathrooms": 2,
             "Receptions": 1,
-            "Type": "Detached",
-            "HeatingType": "Oil",
+            "Type": "Semi-Detached",
+            "HeatingType": "Gas",
             "MainImg": "./images/listings/house9/img1.png",
-            "Description": "Immaculately presented spacious detached home, situated in Belfast, it enjoys a good position within a popular and quiet cul-de-sac with an open outlook to the front with an enclosed private garden. The property is convenient location to the local shops and Carrick primary school is within walking distance, making it desirable for those with young families. The interior of the home has been finished to a very high ‘Show home’ specification and provides bright, spacious accommodation. Accommodation comprises of; Hallway, Reception Room, Kitchen/Dining Room, Three Bedrooms, and Bathroom. There is a tarmac driveway with off street parking for several vehicles. Early Viewing is highly recommended.",
-            "MapHtml": '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1158.2481961086469!2d-6.059753412914514!3d54.50710657962411!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486104635e6ef0a7%3A0x7cfb28ea31729258!2s13%20Jubilee%20Ave%2C%20Lisburn%20BT28%201EB!5e0!3m2!1sen!2suk!4v1617957253292!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>',
+            "Description": "Ideally situated within close proximity of Tesco Springhill this semi-detached chalet has will appeal to a broad spectrum of buyers. The accommodation comprises of 3 bedrooms and a shower room with white suite all on the 1st floor with a lounge, dining room and kitchen on the ground floor as well as the all-important cloakroom with WC. Externally there are very private gardens in lawns and patio, off-street parking, and a recently constructed detached garage. All in all a well presented home in a convenient and popular residential location.",
+            "MapHtml": '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2740.9711957441978!2d-5.700681783854863!3d54.65354578027374!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48619e2ad435c109%3A0x35e36d1444f0ad9b!2s3%20Killeen%20Ave%2C%20Bangor%20BT19%201NB!5e1!3m2!1sen!2suk!4v1618585635174!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>',
             "Images": ["./images/listings/house9/img1.png",
                 "./images/listings/house9/img2.png",
                 "./images/listings/house9/img3.png",
@@ -611,8 +614,8 @@ var propertyObject = {
         },
         {
             "Id": 10,
-            "Address": "#2 Falls Road",
-            "Price": 90000,
+            "Address": "22 Brooklands Park, Whitehead BT38",
+            "Price": 179950,
             "SaleType": "Buy",
             "Bedrooms": 4,
             "Bathrooms": 2,
@@ -620,8 +623,8 @@ var propertyObject = {
             "Type": "Detached",
             "HeatingType": "Oil",
             "MainImg": "./images/listings/house10/img1.png",
-            "Description": "Immaculately presented spacious detached home, situated in Belfast, it enjoys a good position within a popular and quiet cul-de-sac with an open outlook to the front with an enclosed private garden. The property is convenient location to the local shops and Carrick primary school is within walking distance, making it desirable for those with young families. The interior of the home has been finished to a very high ‘Show home’ specification and provides bright, spacious accommodation. Accommodation comprises of; Hallway, Reception Room, Kitchen/Dining Room, Three Bedrooms, and Bathroom. There is a tarmac driveway with off street parking for several vehicles. Early Viewing is highly recommended.",
-            "MapHtml": '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1158.2481961086469!2d-6.059753412914514!3d54.50710657962411!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486104635e6ef0a7%3A0x7cfb28ea31729258!2s13%20Jubilee%20Ave%2C%20Lisburn%20BT28%201EB!5e0!3m2!1sen!2suk!4v1617957253292!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>',
+            "Description": "Impressive detached property situated in a popular and residential location, internal viewing is essential to appreciate all this fine home has to offer. A credit to its present owners the internal accommodation offers lounge, spacious well fitted kitchen/dining area with patio doors to rear garden, three double bedrooms and a deluxe white bathroom suite. Enhanced further with an oil fired central heating system, double glazing, attached garage and well enclosed rear garden. Situated just a short walk to Whitehead town centre, train station and picturesque coastal Blackhead path.",
+            "MapHtml": '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2733.9525835452605!2d-5.721690183851526!3d54.75753638029886!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486199208bc95a71%3A0x1cd07f08f4bf0995!2s22%20Brooklands%20Park%2C%20Whitehead%2C%20Carrickfergus%20BT38%209SN!5e1!3m2!1sen!2suk!4v1618585858358!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>',
             "Images": ["./images/listings/house10/img1.png",
                 "./images/listings/house10/img2.png",
                 "./images/listings/house10/img3.png",
@@ -632,17 +635,17 @@ var propertyObject = {
         },
         {
             "Id": 11,
-            "Address": "#3 Falls Road",
-            "Price": 90000,
+            "Address": "1 Palestine Street, Belfast BT7",
+            "Price": 1000 + " pm",
             "SaleType": "Rent",
-            "Bedrooms": 2,
+            "Bedrooms": 4,
             "Bathrooms": 2,
             "Receptions": 1,
-            "Type": "Detached",
-            "HeatingType": "Oil",
+            "Type": "Terrace",
+            "HeatingType": "Gas",
             "MainImg": "./images/listings/house11/img1.png",
-            "Description": "Immaculately presented spacious detached home, situated in Belfast, it enjoys a good position within a popular and quiet cul-de-sac with an open outlook to the front with an enclosed private garden. The property is convenient location to the local shops and Carrick primary school is within walking distance, making it desirable for those with young families. The interior of the home has been finished to a very high ‘Show home’ specification and provides bright, spacious accommodation. Accommodation comprises of; Hallway, Reception Room, Kitchen/Dining Room, Three Bedrooms, and Bathroom. There is a tarmac driveway with off street parking for several vehicles. Early Viewing is highly recommended.",
-            "MapHtml": '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1158.2481961086469!2d-6.059753412914514!3d54.50710657962411!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486104635e6ef0a7%3A0x7cfb28ea31729258!2s13%20Jubilee%20Ave%2C%20Lisburn%20BT28%201EB!5e0!3m2!1sen!2suk!4v1617957253292!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>',
+            "Description": "Offered to rent is this four bedroomed mid terraced property, situated within the \"Holylands\" of South Belfast it is a short stroll to Queens University, Botanic Avenue and Ormeau Road. A popular location for students this property benefits from being HMO registered.",
+            "MapHtml": '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2917.260387471108!2d-5.929939383944222!3d54.58404688898274!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486108e5207b4dc1%3A0x91cdf11cc6a5895c!2s1%20Palestine%20St%2C%20Belfast%20BT7%201GX!5e1!3m2!1sen!2suk!4v1618586035559!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>',
             "Images": ["./images/listings/house11/img1.png",
                 "./images/listings/house11/img2.png",
                 "./images/listings/house11/img3.png",
@@ -653,17 +656,17 @@ var propertyObject = {
         },
         {
             "Id": 12,
-            "Address": "#4 Falls Road",
-            "Price": 90000,
+            "Address": "10 Brompton Road, Bangor BT20",
+            "Price": 1500000,
             "SaleType": "Buy",
-            "Bedrooms": 1,
+            "Bedrooms": 6,
             "Bathrooms": 2,
-            "Receptions": 1,
+            "Receptions": 2,
             "Type": "Detached",
             "HeatingType": "Oil",
             "MainImg": "./images/listings/house12/img1.png",
-            "Description": "Immaculately presented spacious detached home, situated in Belfast, it enjoys a good position within a popular and quiet cul-de-sac with an open outlook to the front with an enclosed private garden. The property is convenient location to the local shops and Carrick primary school is within walking distance, making it desirable for those with young families. The interior of the home has been finished to a very high ‘Show home’ specification and provides bright, spacious accommodation. Accommodation comprises of; Hallway, Reception Room, Kitchen/Dining Room, Three Bedrooms, and Bathroom. There is a tarmac driveway with off street parking for several vehicles. Early Viewing is highly recommended.",
-            "MapHtml": '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1158.2481961086469!2d-6.059753412914514!3d54.50710657962411!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486104635e6ef0a7%3A0x7cfb28ea31729258!2s13%20Jubilee%20Ave%2C%20Lisburn%20BT28%201EB!5e0!3m2!1sen!2suk!4v1617957253292!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>',
+            "Description": "If you have ever enjoyed life in an atmospheric Boutique Hotel and wondered why the rest of your life didn’t match up to those standards then 10 Brompton Road is the ideal solution……..this Property is opulence personified.",
+            "MapHtml": '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2911.342814611294!2d-5.687476083941933!3d54.666648482696665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48619e3a39b7394f%3A0x27bf66d712ca90fc!2s10%20Brompton%20Rd%2C%20Bangor%20BT20%203RE!5e1!3m2!1sen!2suk!4v1618586213140!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>',
             "Images": ["./images/listings/house12/img1.png",
                 "./images/listings/house12/img2.png",
                 "./images/listings/house12/img3.png",

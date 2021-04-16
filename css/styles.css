@@ -10,6 +10,10 @@ nav {
     padding: 0rem 1rem;
 }
 
+a.dropdown-item {
+    white-space: normal !important;
+}
+
 .navbar-brand {
     width: 20%;
 }
