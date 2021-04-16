@@ -1,5 +1,5 @@
 .pageHeading {
-    color: #439CB5;
+    color: #0AD4F4;
 }
 
 .carousel{
@@ -20,6 +20,7 @@
 .buy{
     position:absolute;
     background-color:#0AD4F4;
+    font-weight: bold;
     border-radius: 10px;
     color: white;
     padding: 5px;
@@ -63,9 +64,9 @@ table{
     text-align: center;
 }
 
-.btn-group-vertical button, .btn-group-vertical a {
-    background-color: #439CB5; 
-    border: 1px solid #439CB5; 
+.btn-group-vertical button, .btn-group-vertical a, form button {
+    background-color: #0AD4F4 !important;
+    border: 1px solid #0AD4F4 !important; 
     color: white;
     cursor: pointer; 
     padding-top: 5px;
@@ -73,12 +74,15 @@ table{
     display: block; 
     border-radius: 8px !important;
     margin-top: 10px !important;
+    font-weight: bold;
   }
 
-  .btn-group-vertical a:hover{
-      color: white;
+  .btn-group-vertical button:hover, .btn-group-vertical a:hover{
+    color: white;
+    transform: scale(1.01);
+    text-decoration: none !important;
   }
-
+  
 .additional-info{
     color: #439CB5; 
 }
