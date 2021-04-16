@@ -26,26 +26,25 @@ li.briefcase::before {
     content: "\f0b1"; /* FontAwesome Unicode */ 
 }
 
-ul.about-info li {
-    color: #439CB5;
-
+ul.about-info li, ul.about-info li a {
+    color: black;
 }
 
 ul.about-info li::before {
-    color: #439CB5; 
+    color: #0AD4F4; 
     font-family: FontAwesome;
     display: inline-block;
     font-size: 2rem;
     width: 1.5em; /* same as padding-left set on li */
 }
 
-ul.team-info li {
+ul.team-info li, ul.team-info li a  {
     font-size: 14px;
-    color: #439CB5;
+    color: black;
 }
 
 ul.team-info li::before {
-    color: #439CB5; 
+    color: #0AD4F4; 
     font-family: FontAwesome;
     display: inline-block;
     font-size: 1rem;

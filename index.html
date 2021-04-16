@@ -20,35 +20,21 @@
 
   <link href="css/homepage.css" rel="stylesheet">
   <link rel="icon" href="images/Logo Solo Transparent.png">
-
-
-
-
-  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
-
-
 <body class="Homepage">
-
-  <div id="navbar-frame"></div>
-  <div class="container-fluid">
-
+  <a class="skip-main" href="#main-content">Skip to main content</a>
+  <div id="navbar-frame" role="navigation"></div>
+  <div class="container-fluid" id="main-content" role="main">
     <div class="wrap">
       <div class="search">
-        <input type="text" class="searchTerm" placeholder="What are you looking for?">
-        <button type="button" id="btnSearch" class="searchButton">
+        <input type="text" class="searchTerm" role="searchbox" placeholder="What are you looking for?">
+        <button type="button" id="btnSearch" role="button" class="searchButton">
           <i class="fa fa-search"></i>
         </button>
       </div>
-
       <div class="button text-center mt-3">
-        <button id="btnBuy" class="btn1"><b>BUY</b></button>
-        <button id="btnRent" class="btn2"><b>RENT</b></button>
+        <button id="btnBuy" role="button" class="btn1"><b>BUY</b></button>
+        <button id="btnRent" role="button" class="btn2"><b>RENT</b></button>
       </div>
       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
       <script src="js/jquery.min.js"></script>

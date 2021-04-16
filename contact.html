@@ -18,25 +18,18 @@
   <!-- Add our own css -->
   <link href="css/styles.css" rel="stylesheet">
   <link href="css/contact.css" rel="stylesheet">
-
-
-  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 
 <body>
-  <div id="navbar-frame"></div>
+  <a class="skip-main" href="#main-content">Skip to main content</a>
+  <div id="navbar-frame" role="navigation"></div>
   <div class="blue">
-    <h1>Contact Us</h1>
+    <h1 class="h1" role="heading">Contact Us</h1>
   </div>
-  <div class="container">
+  <div class="container" id="main-content" role="main">
     <div class="row">
       <div class="col-12 col-lg-4">
-        <form action="https://formspree.io/f/xgerekyw" method="POST" id="my-form">
+        <form action="https://formspree.io/f/xgerekyw" role="form" method="POST" id="my-form">
           <div class="form-group">
             <label for="formGroupName">Name*
               <input type="text" name="name" class="form-control" id="formGroupName" placeholder="Name">
@@ -68,10 +61,6 @@
         <div class="form-status" id="status"></div>
       </div>
     </div>
-
-
-
-
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

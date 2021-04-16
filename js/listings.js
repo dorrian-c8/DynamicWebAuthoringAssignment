@@ -6,17 +6,20 @@ $(document).ready(function () {
     if (retrievedObject == null) {
         localStorage.setItem('properties', JSON.stringify(propertyObject));
     } else {
+        // the object in local storage is not up to date, update it
         if (retrievedObject != JSON.stringify(propertyObject)) {
             localStorage.setItem('properties', JSON.stringify(propertyObject));
         }
     }
 
+    // when we get here we will have the most up to date property list
     retrievedObject = localStorage.getItem('properties');
     var json = JSON.parse(retrievedObject);
 
     // if address-filter-input exists we are on listings page
     if ($('#address-filter-input').length > 0) {
 
+        // set up trigger events for the filter inputs
         $('#address-filter-input').on('input', function () {
             propertySearch(json);
         });
@@ -30,6 +33,7 @@ $(document).ready(function () {
             propertySearch(json);
         });
 
+        // Clear button click event resets form and displays all properties
         $('#btn-Clear').click(function () {
             $('#address-filter-input').val('');
             $('#bedroom-select').val('-Please Choose-');
@@ -37,18 +41,22 @@ $(document).ready(function () {
             $("[name='customRadio']:checked").removeAttr("checked");
             $('.search-term').remove();
             var newurl = window.location.href.split('?')[0];
-            window.history.pushState({ path: newurl }, '', newurl);
+            window.history.pushState({ path: newurl }, '', newurl); // removed any params from query string
             resetProperties(json);
         });
 
         const urlParams = new URLSearchParams(window.location.search);
         var properties = json.houses;
-        const searchTerm = urlParams.get('searchTerm');
+        const searchTerm = urlParams.get('searchTerm'); //Check for params in url. User may have got here using the from page search
         if (searchTerm != null) {
+            // display search term to user
             $('.dream').after('<div class="search-term"><br><span>Showing results for search: ' + unescape(searchTerm) + '</span></div>');
+
+            // filter properties based on the search term
             properties = searchAllProperties(properties, unescape(searchTerm))
         }
 
+        // if params have a sale type, check the appropriate checkbox and filter properties again
         const saleType = urlParams.get('saleType');
         if (saleType != null) {
             if (saleType == 'Buy') {
@@ -60,54 +68,71 @@ $(document).ready(function () {
                 properties = multipleFilterProperties(properties, { "SaleType": "Rent" });
             }
         }
+
+        // now pass the properties for display
         displayProperties(properties);
     } else {
+
+        // if we are here we are in the single listing page so we can grab the id from the query string
         const urlParams = new URLSearchParams(window.location.search);
         const propertyId = urlParams.get('id');
 
+        // get the chosen property from the list
         var property = getPropertyById(json.houses, propertyId);
+
+        // not display the property info on the page
         displaySingleProperty(property);
 
+        // add a click event to the favourites button
         $('.add-fave').click(function () {
             var button = this;
             var favProperties = localStorage.getItem('favProperties');
-            console.log(favProperties);
+            // if not favourites exists in local storage create it
             if (favProperties == null || favProperties.length < 1) {
                 favProperties = localStorage.setItem('favProperties', new Array());
             }
-
+            // if the button saves Add to favs we need to do an add function
             if ($(button).text() == 'Add to favourites') {
                 var newProps = new Array();
+                // add current favourites to an array
                 if (favProperties != null){
                     $(JSON.parse(favProperties)).each(function () {
                         newProps.push(this);
                     });
                 }
+                // now push our new property on to the list
                 newProps.push({ "Id": propertyId, "Address": $('#address').text() });
+                // update the object in local storage
                 localStorage.setItem('favProperties', JSON.stringify(newProps));
                 $('#no-favourites').after('<a class="dropdown-item fav-property" data-fave-id="' + propertyId + '" href="singleListing.html?id=' + propertyId + '">' + $('#address').text() + '</a>');
-                $('#no-favourites').hide();
-                $(button).text('Remove from favourites');
+                $('#no-favourites').hide(); // hide the no favourites item as we have just added one
+                $(button).text('Remove from favourites'); // Set the button text to remove
             } else {
+                // if we are here we are removing a propery from favourites
                 var newProps = new Array();
+                
                 $(JSON.parse(favProperties)).each(function () {
-                    if (Number(this["Id"]) != propertyId) {
+                    if (Number(this["Id"]) != propertyId) {// So add out existing favs to an array where the id is not the one we want to remove
                         newProps.push(this);
                     }
                 });
-
+                 // update the object in local storage   
                 localStorage.setItem('favProperties', JSON.stringify(newProps));
 
+                // not remove the item from the favourites dropdown
                 $('.fav-property').each(function () {
                     if (Number($(this).attr('data-fave-id')) == propertyId) {
                         $(this).remove();
                     }
                 });
 
+                // if no other favourites exist show the no favourites item
                 $('.fav-property').length > 0 ? $('#no-favourites').hide() : $('#no-favourites').show();
-
+                // reset the button text to add
                 $(button).text('Add to favourites');
             }
+            
+                // now we can update the favourites icon in the nav bar
             $('.num').text($('.fav-property').length);
         });
 
@@ -134,6 +159,9 @@ $(document).ready(function () {
     }
 });
 
+/**
+ * Function for updating the url based on radio button selection.
+ */
 function updateUrlParam() {
     const urlParams = new URLSearchParams(window.location.search);
 
@@ -150,14 +178,21 @@ function updateUrlParam() {
     }
 }
 
+/**
+ * Function for searching through the property list
+ *
+ * @param {object} json The property portfolio stored as json.
+ */
 function propertySearch(json) {
     const urlParams = new URLSearchParams(window.location.search);
-    var properties = json.houses;
+    var properties = json.houses; // get the propeties from the json
     const searchTerm = urlParams.get('searchTerm');
     if (searchTerm != null) {
+        // if a search term exists in the url do the first filter here
         properties = searchAllProperties(properties, unescape(searchTerm))
     }
 
+    // filter again is sale type exists
     const saleType = urlParams.get('saleType');
     var saleTypeId = $("[name='customRadio']:checked").attr('id');
     var saleTypeVal = $('label[for="' + saleTypeId + '"]').text();
@@ -172,38 +207,57 @@ function propertySearch(json) {
         }
     }
 
+    // now call getSearchParams to check if any on screen filters have been applied
     var searchObj = getSearchParams();
     if (Object.keys(searchObj).length > 0) {
+        // if we have on screen filters filter again then pass them for display
         var results = multipleFilterProperties(properties, searchObj);
         displayProperties(results);
     } else if ((Object.keys(searchObj).length == 0 && saleTypeVal == 'Both') || (Object.keys(searchObj).length == 0 && searchTerm != null)) {
+        // if there are no on screen filters but query string params display the previously filter properties
         displayProperties(properties);
     } else {
+        // not filters so display all
         resetProperties();
     }
 }
 
+/**
+ * Function for displaying all properties
+ */
 function resetProperties() {
-    // Retrieve the object from storage
+    // Retrieve the object from storage the pass for display
     var retrievedObject = localStorage.getItem('properties');
     var json = JSON.parse(retrievedObject);
 
     displayProperties(json.houses);
 }
 
+/**
+ * Function for setting the correct wording on the favourites button
+ *
+ * @param {number} x The property Id.
+ */
 function setFavButtonWording(propertyId) {
     var favProperties = localStorage.getItem('favProperties');
     if (favProperties == null || favProperties.length < 1) {
         return;
     }
     $(JSON.parse(favProperties)).each(function () {
+        // If this property id exists in the favourites set the button text to remove, otherwise it will get the default text ->'Add to Favourites'
         if (Number(this["Id"]) == propertyId) {
             $('#btn-AddFave').text('Remove from favourites');
         }
     });
 }
 
+/**
+ * Function for displaying a property's info on screen.
+ *
+ * @param {object} property The property to display.
+ */
 function displaySingleProperty(property) {
+    // if this property is undefined display property not found
     if (property == undefined) {
         $('#house-info').hide();
         $('#no-house').show();
@@ -212,27 +266,35 @@ function displaySingleProperty(property) {
         $('#address').text(property.Address);
 
         setFavButtonWording(property.Id);
+
+        // set the enquire and email to a friend button links
         $('#btn-AddFave').after('<a class="btn btn-block" href="contact.html?address=' + property.Address + '">Make an enquiry</a>');
         $('#btn-AddFave').after('<a class="btn btn-block" href="mailto:?subject=Check%20out%20' + property.Address + '&amp;body=View%20the%20property%20at%20' + window.location.href + '">Email to a friend</a>');
 
+        // removed existing carousel items and thumbnails
         $('.carousel-item').remove();
         $('.list-inline-item').remove();
 
+        // now add the images for this house
         $(property.Images).each(function () {
+            // need to check if this is the first image so we can set the active flags
             if ($('.carousel-item').length < 1) {
                 $('.carousel-caption').after('<div class="active carousel-item" data-slide-number="0"><img class="d-block w-100" src="' + this + '" alt="Propery Image ' + $('.carousel-item').length + '"></div>');
+                // add this image to the thumbnail list too
                 $('.carousel-indicators').append('<li class="list-inline-item active"> <a id="carousel-selector-' + $('.list-inline-item').length + '" class="selected" data-slide-to="' + $('.list-inline-item').length + '" data-target="#propertyCarousel"> <img class="d-block w-100" src="' + this + '" alt="Propery Thumbnail Image ' + $('.carousel-item').length + '"></a> </li>');
             } else {
+                // do the same for the rest without the active flags
                 $('.carousel-item').last().after('<div class="carousel-item" ><img class="d-block w-100" src="' + this + '" alt="Propery Image ' + $('.carousel-item').length + '"></div>');
                 $('.carousel-indicators').append('<li class="list-inline-item"> <a id="carousel-selector-' + $('.list-inline-item').length + '" class="selected" data-slide-to="' + $('.list-inline-item').length + '" data-target="#propertyCarousel"> <img class="d-block w-100" src="' + this + '" alt="Propery Thumbnail Image ' + $('.list-inline-item').length + '"></a> </li>');
             }
         });
-        $('.carousel-indicators li').first().addClass('active');
+        $('.carousel-indicators li').first().addClass('active'); // set the active flag for the first thumbnail. Could have done this above
 
+        // Now update the easy bits with tje daya
         property.SaleType.toLowerCase() == "buy" ? $('#saleType').text('For sale') : $('#saleType').text('For rent');
         property.SaleType.toLowerCase() == "buy" ? $('.buy').html('TO BUY') : $('.buy').html('TO RENT');
         $('#houseType').text(property.Type);
-        $('#price').html('<b>from</b>  £' + property.Price.toLocaleString());
+        $('#price').html('<strong>from</strong>  £' + property.Price.toLocaleString());
         $('#bedrooms').text(property.Bedrooms);
         $('#bathrooms').text(property.Bathrooms);
         $('#receptions').text(property.Receptions);
@@ -244,31 +306,44 @@ function displaySingleProperty(property) {
     }
 }
 
+/**
+ * Displays a list of properties on screen.
+ *
+ * @param {object} properties The list of properties.
+ */
 function displayProperties(properties) {
+    // empty the container divs
     $('.listing-row1').empty();
     $('.listing-row').empty();
     $('.listing-row3').empty();
 
     if ($(properties).length < 1) {
+        // if no properties inform the user
         $('.listing-row1').append('<span class="ml-5">No properties matching search criteria</span>');
     } else {
+        // set a count so we know which container to add the property to
         var count = 1;
         $(properties).each(function () {
+            // truncate the descripting to 150 chars and create html for the property
             var cardText = this.Description.length > 150 ? this.Description.substr(0, 150) + '...' : this.Description;
             var html = '<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 listing-col">' +
                 '<div class="card">' +
-                '<div class="sale-type">' +
+                '<div class="sale-type"><strong>' +
                 this.SaleType +
-                '</div>' +
+                '</strong></div>' +
                 '<img src="' + this.MainImg + '" class="card-img-top" alt="card-img-top">' +
                 '<div class="card-body">' +
-                '<h5 class="card-title">' + this.Address + '</h5>' +
+                '<h2 class="card-title">' + this.Address + '</h2>' +
                 '<h3 class="card-price">£' + this.Price.toLocaleString() + '</h3>' +
                 '<p class="card-text">' + cardText + '</p>' +
-                '<p class="card-text"><small class="view-text"><a href="singleListing.html?id=' + this.Id + '">View listing</a></small></p>' +
+                '' +
+                '</div>' +
+                '<div class="card-footer">' +
+                '<a href="singleListing.html?id=' + this.Id + '">View listing</a>' +
                 '</div>' +
                 '</div>' +
                 '</div>';
+            // add propety html to container div
             if (count <= 4) {
                 $('.listing-row1').append(html);
             } else if (count > 4 && count <= 8) {
@@ -281,8 +356,15 @@ function displayProperties(properties) {
     }
 }
 
+
+/**
+ * Returns an object with a key and value for each search param.
+ * 
+ * @return {object} containing the search params
+ */
 function getSearchParams() {
 
+    // get all params from the UI
     var address = $('#address-filter-input').val();
     var saleTypeId = $("[name='customRadio']:checked").attr('id');
     var saleType = $('label[for="' + saleTypeId + '"]').text();
@@ -326,6 +408,13 @@ function getSearchParams() {
     return {}
 }
 
+/**
+ * Searches a property's keys against a param.
+ *
+ * @param {object} obj The property to search.
+ * @param {string} str The param to search.
+ * @return {object} a property if a match is found.
+ */
 function searchHouseAttributes(obj, str) {
     for (var key in obj) {
         if (typeof (obj[key]) == typeof (str)) {
@@ -336,9 +425,17 @@ function searchHouseAttributes(obj, str) {
     }
 }
 
+/**
+ * Returns a property that matches the id param provided.
+ *
+ * @param {object} obj The list of properties.
+ * @param {string} id The id to search for.
+ * @return {object} The request property. undefined if not found.
+ */
 function getPropertyById(obj, id) {
     var property = undefined;
     $(obj).each(function () {
+        // iterate through the properties. If ids match return this property.
         if (this["Id"] == Number(id)) {
             property = this;
         }
@@ -346,6 +443,13 @@ function getPropertyById(obj, id) {
     return property;
 }
 
+/**
+ * Checks a list of properties for dupes.
+ *
+ * @param {object} obj The list of properties.
+ * @param {number} id The id to check for.
+ * @return {number} A count of the propertys occurences in the list.
+ */
 function getInstanceCounts(obj, id) {
     var count = 0;
     $(obj).each(function () {
@@ -356,6 +460,13 @@ function getInstanceCounts(obj, id) {
     return count;
 }
 
+/**
+ * Returns a list of properties that contain a search term.
+ *
+ * @param {object} obj The list of properties.
+ * @param {string} searchTerm The search term.
+ * @return {object} An array properties that contain the search term.
+ */
 function searchAllProperties(obj, searchTerm) {
     var results = new Array();
     $(obj).each(function () {
@@ -366,11 +477,19 @@ function searchAllProperties(obj, searchTerm) {
     return results;
 }
 
+/**
+ * Returns an array of properties that match multiple params.
+ *
+ * @param {object} obj The list of properties.
+ * @param {object} searchParams An object containing a key and value for each search term.
+ * @return {object} an array of properties that match multiple params.
+ */
 function multipleFilterProperties(obj, searchParams) {
     var results = new Array();
     $(obj).each(function () {
         var house = this;
         var found = false;
+        // check each property against each param. If a match occurs push on to array
         for (var key in searchParams) {
             if (key == "Bedrooms") {
                 if (searchParams[key] == 4 && house[key] >= 4) {
@@ -392,15 +511,19 @@ function multipleFilterProperties(obj, searchParams) {
         }
     });
 
+    // above code pushes the property on to the array for each param it matches against
+    // if if only one param we can return this now
     var paramCount = Object.keys(searchParams).length;
     if (paramCount == 1) {
         return results;
     }
 
+
     // now create a final array for houses that meet all the params    
     var finalResults = new Array();
     $(results).each(function () {
         var inFinalResults = getInstanceCounts(finalResults, this["Id"]) > 0;
+        // if the count of the property matches the count of the params, this property matches all criteria so we can push it
         if (getInstanceCounts(results, this["Id"]) == paramCount && !inFinalResults) {
             finalResults.push(this);
         }
@@ -408,19 +531,7 @@ function multipleFilterProperties(obj, searchParams) {
     return finalResults;
 }
 
-const sort_by = (field, desc) => {
-
-    const key = function (x) {
-        return x[field]
-    };
-
-    desc = !desc ? 1 : -1;
-
-    return function (a, b) {
-        return a = key(a), b = key(b), desc * ((a > b) - (b > a));
-    }
-}
-
+// global variable with properties
 var propertyObject = {
     "houses": [
         {
