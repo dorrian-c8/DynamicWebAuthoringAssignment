@@ -85,8 +85,17 @@
     font-size: 38px;
 }
 
+
+.filter-col {
+    height: 100vh;
+}
+
 .row-filter {
     margin-top: 50px;
+}
+
+.listing-col .card {
+    height: 100%;
 }
 
 .sale-type{

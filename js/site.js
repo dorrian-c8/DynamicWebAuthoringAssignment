@@ -56,18 +56,15 @@ function drawNavBar(){
     var id = location.pathname.split('/').slice(-1)[0];
     $('a[href=\'' + id + '\']').addClass("active");
 
-    var favProperties = localStorage.getItem('favProperties');
+    var favProperties = localStorage.getItem('favProperties');    
+
     if (favProperties == null || favProperties.length < 1) {
-        $('#no-favourites').show();
         return;
     }
 
     $(JSON.parse(favProperties)).each(function () {
         $('#no-favourites').after('<a class="dropdown-item fav-property" data-fave-id="' + this.Id + '" href="singleListing.html?id=' + this.Id + '">' + this.Address +'</a>');
     });
-
+    $('.fav-property').length > 0 ? $('#no-favourites').hide() : $('#no-favourites').show();
     $('.num').text($('.fav-property').length);
-    
-    $('#no-favourites').hide();
-    $('body').append('<footer class="mt-5"></footer>')
 }
