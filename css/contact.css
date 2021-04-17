@@ -13,10 +13,10 @@
 }
 
 h1 {
-    padding-top: 60px;
+    padding-top: 30px;
     text-align: center;
     color: white;
-    font-weight: 700;
+    font-weight: 700 !important;
 }
 form {
     background: white;
