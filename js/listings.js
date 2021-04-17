@@ -301,6 +301,7 @@ function displaySingleProperty(property) {
         $('#heatingType').text(property.HeatingType);
         $('#info').text(property.Description);
         $('.modal-header').text(property.Address);
+        $('.breadcrumb-item.active').text(property.Address);
         $('.modal-body').html(property.MapHtml);
         $('#house-info').show();
     }

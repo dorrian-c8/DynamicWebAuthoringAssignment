@@ -89,6 +89,14 @@ a .fa {
     color: #0AD4F4;
 }
 
+.breadcrumb {
+    background-color: white;
+}
+
+.breadcrumb-item a {
+    color: #0AD4F4;
+}
+
   span.fa-circle {
     position: absolute;
     font-size: 0.6em;
