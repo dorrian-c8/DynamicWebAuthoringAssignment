@@ -40,23 +40,23 @@
       <div class="col-12 col-lg-4">
         <form action="https://formspree.io/f/xgerekyw" role="form" method="POST" id="my-form">
           <div class="form-group">
-            <label for="formGroupName">Name*
-              <input type="text" name="name" class="form-control" id="formGroupName" placeholder="Name">
+            <label for="formGroupName">Name
+              <input type="text" name="name" class="form-control" id="formGroupName" placeholder="Name" required>
             </label>
           </div>
           <div class="form-group">
             <label for="formGroupEmail">Email
-              <input type="email" name="_replyto" class="form-control" id="formGroupEmail" placeholder="Email">
+              <input type="email" name="_replyto" class="form-control" id="formGroupEmail" placeholder="Email" required>
             </label>
           </div>
           <div class="form-group">
             <label for="formGroupPhone">Phone Number
-              <input type="phone" name="phone" class="form-control" id="formGroupPhone" placeholder="Number">
+              <input type="phone" name="phone" class="form-control" id="formGroupPhone" placeholder="Number" required>
             </label>
           </div>
           <div class="form-group">
             <label for="formGroupEnquiry">Enquiry
-              <textarea name="message" class="form-control" type="text" rows="4" placeholder="Your message"></textarea>
+              <textarea name="message" class="form-control" type="text" rows="4" placeholder="Your message" required></textarea>
             </label>
           </div>
           <div class="bottom-wrapper">
@@ -68,6 +68,7 @@
           </div>
         </form>
         <div class="form-status" id="status"></div>
+        <div class="form-status2" id="status2"></div>
       </div>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -80,6 +81,7 @@
   <script>
     $(document).ready(function () {
       $('#status').hide();
+      $('#status2').hide();
       const address = window.location.href.includes('address') ? window.location.href.split('address=')[1] : '';
       if (address.length > 0) {
         $('textarea').text('RE: ' + unescape(address));
@@ -103,7 +105,7 @@
         form.reset()
       }).catch(error => {
         status.innerHTML = "Oops! There was a problem submitting your form";
-        $('#status').show();
+        $('#status2').show();
       });
     }
     form.addEventListener("submit", handleSubmit)

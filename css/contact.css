@@ -85,6 +85,16 @@ p {
     margin-top: 20px;
 }
 
+.form-status2 {
+    background: rgba(219, 108, 108, 0.7) !important;
+    color: rgb(143, 27, 27);
+    font-size: 14px;
+    padding: 10px 0px;
+    text-align: center;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
 @media screen and (max-width:600px) {
     form {
         margin-top:-200px;
