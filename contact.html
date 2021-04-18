@@ -39,26 +39,36 @@
     <div class="row">
       <div class="col-12 col-lg-4">
         <form action="https://formspree.io/f/xgerekyw" role="form" method="POST" id="my-form">
+
+          <!-- Name input field -->
           <div class="form-group">
             <label for="formGroupName">Name
               <input type="text" name="name" class="form-control" id="formGroupName" placeholder="Name" required>
             </label>
           </div>
+
+          <!-- Email input field -->
           <div class="form-group">
             <label for="formGroupEmail">Email
               <input type="email" name="_replyto" class="form-control" id="formGroupEmail" placeholder="Email" required>
             </label>
           </div>
+
+          <!-- Phone input field -->
           <div class="form-group">
             <label for="formGroupPhone">Phone Number
               <input type="phone" name="phone" class="form-control" id="formGroupPhone" placeholder="Number" required>
             </label>
           </div>
+
+          <!-- Enquiry input field -->
           <div class="form-group">
             <label for="formGroupEnquiry">Enquiry
               <textarea name="message" class="form-control" type="text" rows="4" placeholder="Your message" required></textarea>
             </label>
           </div>
+
+          <!-- Submission button -->
           <div class="bottom-wrapper">
             <button type="submit" class="btn btn-primary">Submit</button>
             <div class="details-wrapper">
@@ -67,8 +77,11 @@
             </div>
           </div>
         </form>
+
+        <!-- Status messages -->
         <div class="form-status" id="status"></div>
         <div class="form-status2" id="status2"></div>
+
       </div>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -78,6 +91,7 @@
     <script src="js/site.js"></script>
   </div>
 
+  <!-- Formspree API -->
   <script>
     $(document).ready(function () {
       $('#status').hide();
