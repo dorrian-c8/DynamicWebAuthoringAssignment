@@ -4,8 +4,10 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">  
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="Browse Our Properties For Sale And Rent across Northern Ireland" />
+  <meta name="keywords" content="estate agent, properties for sale, properties for rent, housing near me, houses near me, buy house, rent house, house for sale, house for rent" />
   <title>Housepal - Home</title>
 
   <!-- Bootstrap -->
@@ -17,45 +19,56 @@
   <!-- Add our own css -->
   <link href="css/styles.css" rel="stylesheet">
   <link href="css/contact.css" rel="stylesheet">
-
-
-  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 
 <body>
-  <div id="navbar-frame"></div>
+  <a class="skip-main" href="#main-content">Skip to main content</a>
+  <div id="navbar-frame" role="navigation"></div>
   <div class="blue">
-    <h1>Contact Us</h1>
+    <div class="row w-75">
+      <div class="col-12 pl-5">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Contact</li>
+        </ol>
+      </div>
+    </div> 
+    <h1 class="h1" role="heading">Contact Us</h1>
   </div>
-  <div class="container">
+  <div class="container" id="main-content" role="main">
     <div class="row">
       <div class="col-12 col-lg-4">
-        <form action="https://formspree.io/f/xgerekyw" method="POST" id="my-form">
+        <form action="https://formspree.io/f/xgerekyw" role="form" method="POST" id="my-form">
+
+          <!-- Name input field -->
           <div class="form-group">
-            <label for="formGroupName">Name*
-              <input type="text" name="name" class="form-control" id="formGroupName" placeholder="Name">
+            <label for="formGroupName">Name
+              <input type="text" name="name" class="form-control" id="formGroupName" placeholder="Name" required>
             </label>
           </div>
+
+          <!-- Email input field -->
           <div class="form-group">
             <label for="formGroupEmail">Email
-              <input type="email" name="_replyto" class="form-control" id="formGroupEmail" placeholder="Email">
+              <input type="email" name="_replyto" class="form-control" id="formGroupEmail" placeholder="Email" required>
             </label>
           </div>
+
+          <!-- Phone input field -->
           <div class="form-group">
             <label for="formGroupPhone">Phone Number
-              <input type="phone" name="phone" class="form-control" id="formGroupPhone" placeholder="Number">
+              <input type="phone" name="phone" class="form-control" id="formGroupPhone" placeholder="Number" required>
             </label>
           </div>
+
+          <!-- Enquiry input field -->
           <div class="form-group">
             <label for="formGroupEnquiry">Enquiry
-              <textarea name="message" class="form-control" type="text" rows="4" placeholder="Your message"></textarea>
+              <textarea name="message" class="form-control" type="text" rows="4" placeholder="Your message" required></textarea>
             </label>
           </div>
+
+          <!-- Submission button -->
           <div class="bottom-wrapper">
             <button type="submit" class="btn btn-primary">Submit</button>
             <div class="details-wrapper">
@@ -64,13 +77,13 @@
             </div>
           </div>
         </form>
+
+        <!-- Status messages -->
         <div class="form-status" id="status"></div>
+        <div class="form-status2" id="status2"></div>
+
       </div>
     </div>
-
-
-
-
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -78,9 +91,11 @@
     <script src="js/site.js"></script>
   </div>
 
+  <!-- Formspree API -->
   <script>
     $(document).ready(function () {
       $('#status').hide();
+      $('#status2').hide();
       const address = window.location.href.includes('address') ? window.location.href.split('address=')[1] : '';
       if (address.length > 0) {
         $('textarea').text('RE: ' + unescape(address));
@@ -104,7 +119,7 @@
         form.reset()
       }).catch(error => {
         status.innerHTML = "Oops! There was a problem submitting your form";
-        $('#status').show();
+        $('#status2').show();
       });
     }
     form.addEventListener("submit", handleSubmit)

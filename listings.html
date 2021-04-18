@@ -5,9 +5,12 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="Browse Our Properties For Sale And Rent across Northern Ireland" />
+  <meta name="keywords"
+    content="estate agent, properties for sale, properties for rent, housing near me, houses near me, buy house, rent house, house for sale, house for rent" />
   <link rel="stylesheet" href="css/listings.css">
   <link rel="icon" href="images/Logo Solo Transparent.png">
-  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <title>Housepal - Listings</title>
 
   <!-- Bootstrap -->
@@ -20,49 +23,57 @@
   <link href="css/styles.css" rel="stylesheet">
 </head>
 
-<body class="mb-5">
-  <div id="navbar-frame"></div>
-  <div class="container-fluid main-container">
+<body>
+  <a class="skip-main" href="#main-content">Skip to main content</a>
+  <div id="navbar-frame" role="navigation"></div>
 
+<!-- Back-up page incase of JS file error -->
+
+  <div class="container main-container" id="main-content" role="main">
     <div class="row">
-      <div class="filter-col col-12 col-sm-3 col-md-2">
-        <div class="container filter-container">
+      <div class="filter-col col-12 col-sm-3 col-md-2" role="search">
 
+        <!-- Filter menu -->
+        <div class="container filter-container">
           <div class="row">
             <div class="col-10">
               <span class="header-filter">Filter</span>
             </div>
           </div>
-
           <div class="row row-filter">
             <div class="col-12">
-              <span class="address-filter">Town, postcode or address</span>
-              <input class="form-control" id="address-filter-input" type="text" placeholder="">
+
+              <!-- Search -->
+              <label id="address-filter-input-label" class="address-filter">Town, postcode or address</label>
+              <input class="form-control" id="address-filter-input" aria-labelledby="address-filter-input-label"
+                type="text" placeholder="">
             </div>
           </div>
-
           <div class="row row-filter">
             <div class="col-12">
-              <span class="address-filter">Sale Type</span>
+
+              <!-- Radio toggle -->
+              <label id="customRadio-label" class="address-filter">Sale Type</label>
               <div class="custom-control custom-radio">
-                <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+                <input type="radio" role="radio" id="customRadio1" name="customRadio" class="custom-control-input">
                 <label class="custom-control-label" for="customRadio1">Rent</label>
               </div>
               <div class="custom-control custom-radio">
-                <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+                <input type="radio" role="radio" id="customRadio2" name="customRadio" class="custom-control-input">
                 <label class="custom-control-label" for="customRadio2">Buy</label>
               </div>
               <div class="custom-control custom-radio">
-                <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
+                <input type="radio" role="radio" id="customRadio3" name="customRadio" class="custom-control-input">
                 <label class="custom-control-label" for="customRadio3">Both</label>
               </div>
             </div>
           </div>
-
           <div class="row row-filter">
-            <div class="col-10">
-              <span class="address-filter">Bedrooms</span>
-              <select id="bedroom-select" class="custom-select">
+            <div class="col-12">
+
+              <!-- Bedroom dropdown toggle -->
+              <label id="address-filter-label" class="address-filter">Bedrooms</label>
+              <select id="bedroom-select" aria-labelledby="address-filter-label" class="custom-select">
                 <option selected>-Please Choose-</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -73,31 +84,40 @@
           </div>
           <div class="row row-filter">
             <div class="col-10">
-              <button id="btn-Clear" class="btn btn-secondary">Clear</button>
+
+              <!-- Clear button -->
+              <button id="btn-Clear" role="button" class="btn btn-secondary">Clear</button>
             </div>
           </div>
         </div>
       </div>
-
-      <div class="col-12 maincol col-sm-9 col-md-10">
+      <div class="col-12 maincol col-sm-9 col-md-10 mb-3">
+        <div class="row">
+          <div class="col-12 ml-3">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Listings</li>
+            </ol>
+          </div>
+        </div>
         <div class="row heading-row">
-          <div class="col heading-col">
-            <h3 class="header-listings">Listings</h3>
+          <div class="col heading-col mt-0">
+            <h1 class="pageHeading h1" role="heading">Listings</h1>
             <span class="dream">Find your dream house <strong>today</strong></span>
           </div>
         </div>
-
-        <div class="col-12 listing-maincol">
+        <div class="col-12 listing-maincol" role="contentinfo">
 
           <!-- Listings Row 1 -->
-          <div class="row listing-row1">
-
+          <div class="row listing-row1 mb-3">
+            
+            <!-- House -->
             <div class="col-lg-3 col-md-6 col-xs-12 listing-col">
               <div class="card">
-                <img src="images/listings/House1/img1.png" class="card-img-top" alt="card-img-top">
+                <img src="images/listings/House1/img1.jpg" class="card-img-top" alt="card-img-top">
                 <div class="card-body">
-                  <h5 class="card-title">#1 Belfast Avenue</h5>
-                  <h3 class="card-price">£90,000</h3>
+                  <h2 class="card-title">Property name</h2>
+                  <h3 class="card-price">£££</h3>
                   <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
                     additional content. This content is a little bit longer.</p>
                   <p class="card-text"><small class="view-text"></small></p>
@@ -105,12 +125,13 @@
               </div>
             </div>
 
+            <!-- House -->
             <div class="col-lg-3 col-md-6 col-xs-12 listing-col">
               <div class="card">
-                <img src="images/listings/House2/img1.png" class="card-img-top" alt="card-img-top">
+                <img src="images/listings/House2/img1.jpg" class="card-img-top" alt="card-img-top">
                 <div class="card-body">
-                  <h5 class="card-title">#2 Belfast Avenue</h5>
-                  <h3 class="card-price">£90,000</h3>
+                  <h2 class="card-title">Property name</h2>
+                  <h3 class="card-price">£££</h3>
                   <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
                     additional content. This content is a little bit longer.</p>
                   <p class="card-text"><small class="view-text">View listing</small></p>
@@ -118,12 +139,13 @@
               </div>
             </div>
 
+            <!-- House -->
             <div class="col-lg-3 col-md-6 col-xs-12 listing-col">
               <div class="card">
-                <img src="images/listings/House3/img1.png" class="card-img-top" alt="card-img-top">
+                <img src="images/listings/House3/img1.jpg" class="card-img-top" alt="card-img-top">
                 <div class="card-body">
-                  <h5 class="card-title">#3 Belfast Avenue</h5>
-                  <h3 class="card-price">£90,000</h3>
+                  <h2 class="card-title">Property name</h2>
+                  <h3 class="card-price">£££</h3>
                   <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
                     additional content. This content is a little bit longer.</p>
                   <p class="card-text"><small class="view-text">View listing</small></p>
@@ -131,12 +153,13 @@
               </div>
             </div>
 
+            <!-- House -->
             <div class="col-lg-3 col-md-6 col-xs-12 listing-col">
               <div class="card">
                 <img src="images/listings/House4/img1.png" class="card-img-top" alt="card-img-top">
                 <div class="card-body">
-                  <h5 class="card-title">#4 Belfast Avenue</h5>
-                  <h3 class="card-price">£90,000</h3>
+                  <h2 class="card-title">Property name</h2>
+                  <h3 class="card-price">£££</h3>
                   <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
                     additional content. This content is a little bit longer.</p>
                   <p class="card-text"><small class="view-text">View listing</small></p>
@@ -146,14 +169,15 @@
           </div>
 
           <!-- Listings Row 2 -->
-          <div class="row listing-row">
+          <div class="row listing-row mb-3">
 
+            <!-- House -->
             <div class="col-lg-3 col-md-6 col-xs-12 listing-col">
               <div class="card">
                 <img src="images/listings/House5/img1.png" class="card-img-top" alt="card-img-top">
                 <div class="card-body">
-                  <h5 class="card-title">#1 Lisburn Lane</h5>
-                  <h3 class="card-price">£90,000</h3>
+                  <h2 class="card-title">Property name</h2>
+                  <h3 class="card-price">£££</h3>
                   <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
                     additional content. This content is a little bit longer.</p>
                   <p class="card-text"><small class="view-text">View listing</small></p>
@@ -161,12 +185,13 @@
               </div>
             </div>
 
+            <!-- House -->
             <div class="col-lg-3 col-md-6 col-xs-12 listing-col">
               <div class="card">
                 <img src="images/listings/House6/img1.png" class="card-img-top" alt="card-img-top">
                 <div class="card-body">
-                  <h5 class="card-title">#2 Lisburn Lane</h5>
-                  <h3 class="card-price">£90,000</h3>
+                  <h2 class="card-title">Property name</h2>
+                  <h3 class="card-price">£££</h3>
                   <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
                     additional content. This content is a little bit longer.</p>
                   <p class="card-text"><small class="view-text">View listing</small></p>
@@ -174,12 +199,13 @@
               </div>
             </div>
 
+            <!-- House -->
             <div class="col-lg-3 col-md-6 col-xs-12 listing-col">
               <div class="card">
                 <img src="images/listings/House8/img1.png" class="card-img-top" alt="card-img-top">
                 <div class="card-body">
-                  <h5 class="card-title">#3 Lisburn Lane</h5>
-                  <h3 class="card-price">£90,000</h3>
+                  <h2 class="card-title">Property name</h2>
+                  <h3 class="card-price">£££</h3>
                   <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
                     additional content. This content is a little bit longer.</p>
                   <p class="card-text"><small class="view-text">View listing</small></p>
@@ -187,12 +213,13 @@
               </div>
             </div>
 
+            <!-- House -->
             <div class="col-lg-3 col-md-6 col-xs-12 listing-col">
               <div class="card">
                 <img src="images/listings/House8/img1.png" class="card-img-top" alt="card-img-top">
                 <div class="card-body">
-                  <h5 class="card-title">#4 Lisburn Lane</h5>
-                  <h3 class="card-price">£90,000</h3>
+                  <h2 class="card-title">Property name</h2>
+                  <h3 class="card-price">£££</h3>
                   <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
                     additional content. This content is a little bit longer.</p>
                   <p class="card-text"><small class="view-text">View listing</small></p>
@@ -201,15 +228,17 @@
             </div>
           </div>
 
-          <!-- Listings Row 3 -->
-          <div class="row listing-row3">
 
+          <!-- Listings Row 3 -->
+          <div class="row listing-row3 mb-5">
+
+            <!-- House -->
             <div class="col-lg-3 col-md-6 col-xs-12 listing-col">
               <div class="card">
                 <img src="images/listings/House9/img1.png" class="card-img-top" alt="card-img-top">
                 <div class="card-body">
-                  <h5 class="card-title">#1 Falls Road</h5>
-                  <h3 class="card-price">£90,000</h3>
+                  <h2 class="card-title">Property name</h2>
+                  <h3 class="card-price">£££</h3>
                   <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
                     additional content. This content is a little bit longer.</p>
                   <p class="card-text"><small class="view-text">View listing</small></p>
@@ -217,12 +246,13 @@
               </div>
             </div>
 
+            <!-- House -->
             <div class="col-lg-3 col-md-6 col-xs-12 listing-col">
               <div class="card">
                 <img src="images/listings/House10/img1.png" class="card-img-top" alt="card-img-top">
                 <div class="card-body">
-                  <h5 class="card-title">#2 Falls Road</h5>
-                  <h3 class="card-price">£90,000</h3>
+                  <h2 class="card-title">Property name</h2>
+                  <h3 class="card-price">£££</h3>
                   <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
                     additional content. This content is a little bit longer.</p>
                   <p class="card-text"><small class="view-text">View listing</small></p>
@@ -230,12 +260,13 @@
               </div>
             </div>
 
+            <!-- House -->
             <div class="col-lg-3 col-md-6 col-xs-12 listing-col">
               <div class="card">
                 <img src="images/listings/House11/img1.png" class="card-img-top" alt="card-img-top">
                 <div class="card-body">
-                  <h5 class="card-title">#3 Falls Road</h5>
-                  <h3 class="card-price">£90,000</h3>
+                  <h2 class="card-title">Property name</h2>
+                  <h3 class="card-price">£££</h3>
                   <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
                     additional content. This content is a little bit longer.</p>
                   <p class="card-text"><small class="view-text">View listing</small></p>
@@ -243,12 +274,13 @@
               </div>
             </div>
 
+            <!-- House -->
             <div class="col-lg-3 col-md-6 col-xs-12 listing-col">
               <div class="card">
                 <img src="images/listings/House12/img1.png" class="card-img-top" alt="card-img-top">
                 <div class="card-body">
-                  <h5 class="card-title">#4 Falls Road</h5>
-                  <h3 class="card-price">£90,000</h3>
+                  <h2 class="card-title">Property name</h2>
+                  <h3 class="card-price">£££</h3>
                   <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
                     additional content. This content is a little bit longer.</p>
                   <p class="card-text"><small class="view-text">View listing</small></p>

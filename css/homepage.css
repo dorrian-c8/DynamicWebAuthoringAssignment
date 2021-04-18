@@ -2,8 +2,7 @@ body.Homepage
 {
     background-image: url("../images/Index/house2.jpg"); 
     background-attachment: fixed;
-    background-size: auto; 
-    background-image: cover;
+    background-size: cover;
     
 }
 body
@@ -14,7 +13,6 @@ body
     height: 100%;
 
 }
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
 .search {
   width: 100%;
@@ -52,11 +50,51 @@ body
 /*Resize the wrap to see the search bar change!*/
 .wrap{
   width: 30%;
-  position: absolute;
-  top: 50%;
+  margin: auto;
+  margin-top: 20%;
+  /* position: absolute;
+  /* top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transfor
+  m: translate(-50%, -50%); */
 }
+
+@media only screen and (max-width: 1120px) {
+  .wrap {
+    width: 40%;
+  }
+}
+
+@media only screen and (max-width: 760px) {
+  .wrap {
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .wrap {
+    width: 60%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .wrap {
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .wrap {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .wrap {
+    width: 90%;
+  }
+}
+
 /* Style the container with a rounded border, grey background and some padding and margin */
 .container {
   border: 2px solid #ccc;
@@ -106,6 +144,11 @@ body
     color: #434343;
     text-align: center;
   }
+
+  .breadcrumb {
+    background-color: #f1f1f1;
+}
+
   .inner{
     max-width: 1200px;
     margin: auto;
@@ -114,26 +157,16 @@ body
   }
 
   .border{
-    width: 160px
+    width: 160px;
     height: 5px;
     background: #00DEFF;
     margin: 26px auto;
   }
 
-  .row{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .col{
-    flex: 33.33%;
-    max-width: 33.33%;
-    box-sizing: border-box;
-    padding: 15px;
-  }
   .testimonial{
     background: #fff;
     padding: 30px;
+    height: 100%;
 
   }
   .testimonial img{
@@ -153,11 +186,6 @@ body
 
 /* Style the button and place it in the middle of the container/image */
 .button .btn1 {
-  position: absolute;
-  top: 100px;
-  left: 120px;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
   background-color: #00DEFF;
   color: white;
   font-size: 20px;
@@ -167,24 +195,19 @@ body
   border-radius: 5px;
 }
 
-.button .btn1:hover {
-  background-color: #439CB5;
+.button .btn1:hover, .button .btn2:hover {
+  transform: scale(1.05);
+  color: White;
+  text-decoration: none !important;
 }
 .button .btn2 {
-  position: absolute;
-  top: 100px;
-  left: 350px;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
+  margin-left: 20%;
   background-color: #00DEFF;
   color: white;
   font-size: 20px;
   padding: 12px 24px;
+  font-weight: bold;
   border: none;
   cursor: pointer;
   border-radius: 5px;
-}
-
-.button .btn2:hover {
-  background-color: #439CB5;
 }

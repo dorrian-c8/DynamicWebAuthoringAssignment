@@ -10,6 +10,10 @@ nav {
     padding: 0rem 1rem;
 }
 
+a.dropdown-item {
+    white-space: normal !important;
+}
+
 .navbar-brand {
     width: 20%;
 }
@@ -23,7 +27,7 @@ nav {
 }
 
 .nav-link.active {
-    color: #439CB5 !important;
+    color: #0AD4F4 !important;
 }
 
 a .fa {
@@ -82,7 +86,15 @@ a .fa {
   }
 
 .pageHeading {
-    color: #439CB5;
+    color: #0AD4F4;
+}
+
+.breadcrumb {
+    background-color: white;
+}
+
+.breadcrumb-item a {
+    color: #0AD4F4;
 }
 
   span.fa-circle {
@@ -94,10 +106,27 @@ a .fa {
   }
   span.num {
     position: absolute;
+    font-weight: bold;
     font-size: 0.4em;
     top: 7px;
     color: #fff;
-    right: 19px;
+    right: 18px;
     font-family: 'Poppins';
+
   }
   
+  a.skip-main {
+    position: absolute;
+    left: -999px;
+    width: 1px;
+    height: 1px;
+    top: auto;
+}
+a.skip-main:focus {
+    color: black;
+    display: inline-block;
+    height: auto;
+    width: auto;
+    position: static;
+    margin: auto;
+  }

@@ -1,9 +1,5 @@
 .pageHeading {
-    color: #439CB5;
-}
-
-.help{
-    text-align: right;
+    color: #0AD4F4;
 }
 
 .carousel{
@@ -24,18 +20,35 @@
 .buy{
     position:absolute;
     background-color:#0AD4F4;
+    font-weight: bold;
     border-radius: 10px;
     color: white;
-    top: 110px;
+    padding: 5px;
+    margin-top: 10%;
+    margin-right: 2%;
     right: 0px;
-    padding-bottom: 0px;
-    padding-top: 5px;
-    padding-left: 20px;
-    padding-right: 10px;
-    margin: 5px;
     z-index: 1;
     text-align: center;
 }
+
+@media only screen and (max-width: 525px) {
+    .buy {
+        margin-top: 12%;
+    }
+  }
+
+  @media only screen and (max-width: 420px) {
+    .buy {
+        margin-top: 16%;
+    }
+  }  
+
+  @media only screen and (max-width: 360px) {
+    .buy {
+        margin-top: 30%;
+    }
+  }   
+
 table{
     margin-top: 30px;
     border-radius: 5px;
@@ -50,9 +63,10 @@ table{
     color: #439CB5;
     text-align: center;
 }
-.btn-group-vertical button, .btn-group-vertical a {
-    background-color: #439CB5; 
-    border: 1px solid #439CB5; 
+
+.btn-group-vertical button, .btn-group-vertical a, form button {
+    background-color: #0AD4F4 !important;
+    border: 1px solid #0AD4F4 !important; 
     color: white;
     cursor: pointer; 
     padding-top: 5px;
@@ -60,12 +74,15 @@ table{
     display: block; 
     border-radius: 8px !important;
     margin-top: 10px !important;
+    font-weight: bold;
   }
 
-  .btn-group-vertical a:hover{
-      color: white;
+  .btn-group-vertical button:hover, .btn-group-vertical a:hover{
+    color: white;
+    transform: scale(1.01);
+    text-decoration: none !important;
   }
-
+  
 .additional-info{
     color: #439CB5; 
 }

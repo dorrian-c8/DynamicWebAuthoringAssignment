@@ -4,8 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">  
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="Browse Our Properties For Sale And Rent across Northern Ireland" />
+    <meta name="keywords" content="estate agent, properties for sale, properties for rent, housing near me, houses near me, buy house, rent house, house for sale, house for rent" />
     <title>Housepal - View Listing</title>
     <link rel="icon" href="images/Logo Solo Transparent.png">
     <!-- Bootstrap -->
@@ -17,187 +19,198 @@
     <!-- Add our own css -->
     <link href="css/styles.css" rel="stylesheet">
     <link href="css/singleListing.css" rel="stylesheet">
-
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-          <![endif]-->
 </head>
 
 <body>
-    <div id="navbar-frame"></div>
-
-    <div class="container-fluid">
+    <a class="skip-main" href="#main-content">Skip to main content</a>
+    <div id="navbar-frame" role="navigation"></div>
+    <div class="container-fluid" id="main-content" role="main">
         <div class="row">
-            <div class="col-lg-11 col-md-8 mt-3 ml-5">
-                <h1 class="pageHeading">Listings</h1>
-
-                <div class="row">
-                    <div class="col-lg-8 col-sm-6">
-                        <h5 class="subHead">Find your dream home <b>today</b></h5>
-                    </div>
-                    <div class="col-lg-3 offset-lg-1 col-sm-6">
-                        <h5 class="help">Need help? <b><u><a style="color: black;" href="contact.html">Click here.</a></u></b></h5>
+            <div class="col-12 p-1">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="listings.html">Listings</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Single Listing</li>
+              </ol>
+            </div>
+          </div>
+        <div class="row">
+            <div class="col-lg-12 mt-0 pl-5">
+                <h1 class="pageHeading h1 pl-2" role="heading">View Listing</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9 col-sm-12">
+                <h2 class="subHead h5 ml-5">Find your dream home <strong>today</strong></h2>
+            </div>
+            <div class="col-md-3 d-none d-lg-block">
+                <h2 class="help h5" role="heading">Need help? <strong><a style="color: black;"
+                                href="contact.html">Click
+                                here.</a></strong></h2>
+            </div>
+        </div>
+        <div id="house-info" class=" ml-5" style="display: none;" role="contentinfo">
+            <div class="row">
+                <div class="col-lg-8 col-sm-12">
+                    <div id="propertyCarousel" class="carousel slide" data-ride="carousel">
+                        <div class="buy">
+                            TO BUY
+                        </div>
+                        <!-- slides -->
+                        <div class="carousel-inner">
+                            <div class="carousel-caption pr-2">
+                                <h2 id="address" class="h5">71 Stormwind Street, Belfast, BT17 0UG</h2>
+                            </div>
+                        </div> <!-- Left right --> <a class="carousel-control-prev" href="#propertyCarousel"
+                            data-slide="prev"> <span class="carousel-control-prev-icon"></span> </a> <a
+                            class="carousel-control-next" href="#propertyCarousel" data-slide="next"> <span
+                                class="carousel-control-next-icon"></span> </a> <!-- Thumbnails -->
+                        <ol class="carousel-indicators list-inline">
+                            <li class="list-inline-item active"> <a id="carousel-selector-0" class="selected"
+                                    data-slide-to="0" data-target="#propertyCarousel"> <img
+                                        src="https://i.imgur.com/weXVL8M.jpg" class="img-fluid"> </a> </li>
+                            <li class="list-inline-item"> <a id="carousel-selector-1" data-slide-to="1"
+                                    data-target="#propertyCarousel"> <img src="https://i.imgur.com/Rpxx6wU.jpg"
+                                        class="img-fluid"> </a> </li>
+                            <li class="list-inline-item"> <a id="carousel-selector-2" data-slide-to="2"
+                                    data-target="#propertyCarousel"> <img src="https://i.imgur.com/83fandJ.jpg"
+                                        class="img-fluid"> </a> </li>
+                            <li class="list-inline-item"> <a id="carousel-selector-2" data-slide-to="3"
+                                    data-target="#propertyCarousel"> <img src="https://i.imgur.com/JiQ9Ppv.jpg"
+                                        class="img-fluid">
+                                </a>
+                            </li>
+                        </ol>
                     </div>
                 </div>
-
-                <div class="row" id="house-info" style="display: none;">
-                    <div class="col-lg-8 col-sm-12">
-                        <div id="propertyCarousel" class="carousel slide" data-ride="carousel">
-                            <div class="buy">
-                                <h6>TO BUY</h6>
-                            </div>
-                            <!-- slides -->
-                            <div class="carousel-inner">
-                                <div class="carousel-caption pr-2">
-                                    <h5 id="address">71 Stormwind Street, Belfast, BT17 0UG</h5>
-                                </div>
-                            </div> <!-- Left right --> <a class="carousel-control-prev" href="#propertyCarousel" data-slide="prev"> <span class="carousel-control-prev-icon"></span> </a> <a class="carousel-control-next" href="#propertyCarousel" data-slide="next"> <span class="carousel-control-next-icon"></span> </a> <!-- Thumbnails -->
-                            <ol class="carousel-indicators list-inline">
-                                <li class="list-inline-item active"> <a id="carousel-selector-0" class="selected" data-slide-to="0" data-target="#propertyCarousel"> <img src="https://i.imgur.com/weXVL8M.jpg" class="img-fluid"> </a> </li>
-                                <li class="list-inline-item"> <a id="carousel-selector-1" data-slide-to="1" data-target="#propertyCarousel"> <img src="https://i.imgur.com/Rpxx6wU.jpg" class="img-fluid"> </a> </li>
-                                <li class="list-inline-item"> <a id="carousel-selector-2" data-slide-to="2" data-target="#propertyCarousel"> <img src="https://i.imgur.com/83fandJ.jpg" class="img-fluid"> </a> </li>
-                                <li class="list-inline-item"> <a id="carousel-selector-2" data-slide-to="3" data-target="#propertyCarousel"> <img src="https://i.imgur.com/JiQ9Ppv.jpg" class="img-fluid"> </a> </li>
-                            </ol>
+                <div class="col-lg-3 offset-lg-1 col-sm-12">
+                    <div class="panel panel-default">
+                        <table class="table table-striped" role="tab">
+                            <tbody>
+                                <tr>
+                                    <th colspan="2">
+                                        <h4 class="keyInfo">Key Information</h4>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td><strong>Style:</strong></td>
+                                    <td id="saleType">For sale</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Status:</strong></td>
+                                    <td id="houseType">Detached</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Price:</strong></td>
+                                    <td id="price"><strong>from</strong> £160,000</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Bedrooms:</strong></td>
+                                    <td id="bedrooms">3</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Bathrooms:</strong></td>
+                                    <td id="bathrooms">2</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Receptions:</strong></td>
+                                    <td id="receptions">1</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Heating type:</strong></td>
+                                    <td id="heatingType">Oil</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="btn-group-vertical btn-block" role="group">
+                            <button data-toggle="modal" data-target="#mapModal" class="btn-block">View on map</button>
+                            <button id="btn-AddFave" class="btn-block add-fave">Add to favourites</button>
                         </div>
                     </div>
-
-                    <div class="col-lg-3 offset-lg-1 col-sm-12">
-                        <div class="panel panel-default">
-                            <table class="table table-striped">
-                                <tbody>
-                                    <tr>
-                                        <th colspan="2">
-                                            <h4 class="keyInfo">Key Information</h4>
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Style:</b></td>
-                                        <td id="saleType">For sale</td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Status:</b></td>
-                                        <td id="houseType">Detached</td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Price:</b></td>
-                                        <td id="price"><b>from</b> £160,000</td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Bedrooms:</b></td>
-                                        <td id="bedrooms">3</td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Bathrooms:</b></td>
-                                        <td id="bathrooms">2</td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Receptions:</b></td>
-                                        <td id="receptions">1</td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Heating type:</b></td>
-                                        <td id="heatingType">Oil</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
-                            <div class="btn-group-vertical btn-block" role="group">
-                                <button data-toggle="modal" data-target="#mapModal" class="btn-block">View on map</button>
-                                <button id="btn-AddFave" class="btn-block add-fave">Add to favourites</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- <div class="col-lg-12 col-md-8"> -->
-                        <div class="row mt-5">
-                            <div class="col-lg-8 col-sm-12">
-                                <h2 class="additional-info">Additional Information</h2>
-                                <p id="info">
-                                    Immaculately presented spacious detached home, situated in Belfast, it
-                                    enjoys a good position within a popular and quiet cul-de-sac with an open
-                                    outlook to
-                                    the front
-                                    with an enclosed private garden. The property is convenient location to the
-                                    local
-                                    shops and
-                                    Carrick primary school is within walking distance, making it desirable for those
-                                    with young
-                                    families. The interior of the home has been finished to a very high ‘Show home’
-                                    specification
-                                    and provides bright, spacious accommodation. Accommodation comprises of;
-                                    Hallway, Reception Room, Kitchen/Dining Room, Three Bedrooms, and Bathroom.
-                                    There is a tarmac driveway with off street parking for several vehicles.
-                                    Early Viewing is highly recommended.
-                                </p>
-                            </div>
-
-                            <div class="col-lg-3 offset-lg-1 col-sm-12">
-                                <div class="panel panel-default">
-                                    <form class="form-container" action="https://formspree.io/f/xgerekyw" method="POST" id="my-form">
-                                        <h4 class="more-info">Need more info?</h4>
-                                        <p>
-                                            Fill in your details below and a member of our team will get back to
-                                            you.
-                                        </p>
-                                        <div class="mb-2">
-                                            <label for="name" class="form-label">Your name:</label><span
-                                                class="required">*</span>
-                                            <input type="name" class="form-control form-control-inline" id="inputName"
-                                                required>
-                                        </div>
-                                        <div class="mb-2">
-                                            <label for="email" class="form-label">Email address:</label><span
-                                                class="required">*</span>
-                                            <input type="email" class="form-control form-control-inline" id="inputEmail"
-                                                required>
-                                        </div>
-                                        <div class="mb-2">
-                                            <label for="telephone" class="form-label">Telephone:</label><span
-                                                class="required">*</span>
-                                            <input type="number" class="form-control form-control-inline"
-                                                id="inputTelephone">
-                                        </div>
-                                        <button type="submit" class="btn-sub btn-primary btn-block">Submit</button>
-                                    </form>
-                                    <div class="form-status" id="status"></div>
-                                </div>
-                            </div>
-                        </div>
-                    <!-- </div> -->
-                    <div class="modal" id="mapModal" tabindex="-1" role="dialog">
-                        <div class="modal-dialog" role="document">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title">Modal title</h5>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>
-                            <div class="modal-body">
-                              <p>Modal body text goes here.</p>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
                 </div>
             </div>
-            <div class="row" id="no-house" style="display: none;">
-                <div class="col-lg-11 col-md-8 mt-3 ml-5">
-                    <div class="mt-3 ml-3">
-                        <h5 class="subHead">Property not found.</h5>
+            <!-- <div class="col-lg-12 col-md-8"> -->
+            <div class="row">
+                <div class="col-lg-8 col-sm-12 mt-5">
+                    <h2 class="additional-info h5 mt-3">Additional Information</h2>
+                    <p id="info">
+                        Immaculately presented spacious detached home, situated in Belfast, it
+                        enjoys a good position within a popular and quiet cul-de-sac with an open
+                        outlook to
+                        the front
+                        with an enclosed private garden. The property is convenient location to the
+                        local
+                        shops and
+                        Carrick primary school is within walking distance, making it desirable for those
+                        with young
+                        families. The interior of the home has been finished to a very high ‘Show home’
+                        specification
+                        and provides bright, spacious accommodation. Accommodation comprises of;
+                        Hallway, Reception Room, Kitchen/Dining Room, Three Bedrooms, and Bathroom.
+                        There is a tarmac driveway with off street parking for several vehicles.
+                        Early Viewing is highly recommended.
+                    </p>
+                </div>
+                <div class="col-lg-3 offset-lg-1 col-sm-12">
+                    <div class="panel panel-default">
+                        <form class="form-container" role="form" action="https://formspree.io/f/xgerekyw" method="POST"
+                            id="my-form">
+                            <h3 class="more-info h4">Need more info?</h4>
+                                <p>
+                                    Fill in your details below and a member of our team will get back to
+                                    you.
+                                </p>
+                                <div class="mb-2">
+                                    <label for="name" class="form-label">Your name:</label><span
+                                        class="required">*</span>
+                                    <input type="name" class="form-control form-control-inline" id="inputName" required>
+                                </div>
+                                <div class="mb-2">
+                                    <label for="email" class="form-label">Email address:</label><span
+                                        class="required">*</span>
+                                    <input type="email" class="form-control form-control-inline" id="inputEmail"
+                                        required>
+                                </div>
+                                <div class="mb-2">
+                                    <label for="telephone" class="form-label">Telephone:</label><span
+                                        class="required">*</span>
+                                    <input type="number" class="form-control form-control-inline" id="inputTelephone">
+                                </div>
+                                <button type="submit" class="btn-sub btn-primary btn-block">Submit</button>
+                        </form>
+                        <div class="form-status" id="status"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- </div> -->
+            <div class="modal" id="mapModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title">Modal title</h2>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Modal body text goes here.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+    </div>
+    <div class="row" id="no-house" style="display: none;">
+        <div class="col-lg-11 col-md-8 mt-3 ml-5">
+            <div class="mt-3 ml-3">
+                <h2 class="subHead h5">Property not found.</h2>
+            </div>
+        </div>
+    </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery.min.js"></script>
